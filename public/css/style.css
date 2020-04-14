@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+:root{
+    --amplitudo-color: rgb(12, 188, 172);
+    --cover-color: rgba(12, 188, 172, 0.85);
+    --second-color: rgba(38, 25, 107,0.8);
+}
+body{
+    font-family: 'Gugi', cursive;
+}
+
+.nav__custom{
+    background-color: var(--amplitudo-color);
+    height: 48px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+.navigacija{
+    padding: 0;
+}
+.nav__custom__item{
+    height: 100%;
+}
+.nav__custom__item:hover{
+    background-color: rgb(38, 25, 107);
+}
+.logo{
+    position: absolute;
+    left: 6%;
+}

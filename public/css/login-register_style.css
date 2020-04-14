@@ -1,0 +1,30 @@
+.body{
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-header{
+    background-color: var(--amplitudo-color);
+    color: #fff;
+    font-size: 20px;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn{
+    background-color: var(--amplitudo-color);
+    color: #fff;
+    border: none;
+}
+.btn:hover, #link:hover{
+    background-color: #fff;
+    color: var(--amplitudo-color);
+    text-decoration: none;
+}
+.card-body{
+    background-color: rgba(97, 205, 213, 0.3);
+}
