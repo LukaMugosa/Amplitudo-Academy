@@ -15,37 +15,49 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset("css/style.css")}}">
+    @yield('links')
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm pt-0 pr-0  pb-0 sticky-top">
+            <div class="container navigacija mr-0">
+                <div class="logo">
+                    <a class="navbar-brand ml-0" id="logo" href="{{ url('/') }}">
+                        <img class="mr-2" src="{{asset('images/logo.jpg')}}" alt="logo.jpg"> {{ config('app.name', 'AmplitudoAcademy') }}
+                    </a>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
+                <div class="collapse navbar-collapse mb-0" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto nav__custom">
                         <!-- Authentication Links -->
+                        <li class="nav-item nav__custom__item pl-2 pr-2">
+                            <a class="nav-link text-light" href="/">Home</a>
+                        </li>
+                        <li class="nav-item nav__custom__item pl-2 pr-2">
+                            <a class="nav-link text-light" href="{{route('courses')}}">Courses</a>
+                        </li>
+                        <li class="nav-item nav__custom__item pl-2 pr-2">
+                            <a class="nav-link text-light" href="{{route('blog')}}">Blog</a>
+                        </li>
+                        <li class="nav-item nav__custom__item pl-2 pr-2">
+                            <a class="nav-link text-light" href="{{route('about')}}">About Us</a>
+                        </li>
+
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <li class="nav-item  nav__custom__item pl-2 pr-2">
+                                <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <li class="nav-item  nav__custom__item pl-2 pr-2">
+                                    <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -72,7 +84,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>
