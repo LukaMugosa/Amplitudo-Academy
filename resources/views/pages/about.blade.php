@@ -24,7 +24,7 @@
         <a href="#">
             <h1 class="package__title">Our Goal</h1>
             <h2 class="package__subtitle">Creating and motivating new developers every day</h2>
-            <p class="package__info">We founded this academy to show everyone that programming can be fun and that with good conditions, a little effort and work, anyone can become a developer!</p>
+            <p class="package__info">The goal is to prevent the departure of young and ambitious people from Montenegro and support to gain new knowledge and skills in the area you are trained.</p>
         </a>
     </section>
 @endsection
