@@ -24,3 +24,4 @@ Route::get('/','PagesController@index');
 Route::get('/courses','PagesController@courses')->name('courses');
 Route::get('/about','PagesController@about')->name('about');
 Route::get('/blog','PagesController@blog')->name('blog');
+Route::get('/posts','PostsController@index');
