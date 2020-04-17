@@ -38,27 +38,27 @@ class User extends Authenticatable
     ];
 
     public function isAdmin(){
-        $name = $this->role()->name;
+        $name = $this->role->name;
         return ($name === 'ROLE_ADMIN');
     }
     public function isMentor(){
-        $name = $this->role()->name;
+        $name = $this->role->name;
         return ($name === 'ROLE_MENTOR');
     }
     public function isSupervisor(){
-        $name = $this->role()->name;
+        $name = $this->role->name;
         return ($name === 'ROLE_SUPERVISOR');
     }
     public function isGuest(){
-        $name = $this->role()->name;
+        $name = $this->role->name;
         return ($name === 'ROLE_GUEST');
     }
     public function isStudent(){
-        $name = $this->role()->name;
+        $name = $this->role->name;
         return ($name === 'ROLE_STUDENT');
     }
 
     public function role(){
-        return $this->belongsTo('App\Post');
+        return $this->belongsTo('App\Role');
     }
 }

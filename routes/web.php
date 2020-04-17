@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/','PagesController@index');
 Route::get('/courses','PagesController@courses')->name('courses');
 Route::get('/about','PagesController@about')->name('about');
