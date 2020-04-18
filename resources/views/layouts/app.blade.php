@@ -45,7 +45,7 @@
                             <a class="nav-link text-light" href="{{route('courses')}}">Courses</a>
                         </li>
                         <li class="nav-item nav__custom__item pl-2 pr-2">
-                            <a class="nav-link text-light" href="{{route('blog')}}">Blog</a>
+                            <a class="nav-link text-light" href="{{url('/posts')}}">Blog</a>
                         </li>
                         <li class="nav-item nav__custom__item pl-2 pr-2">
                             <a class="nav-link text-light" href="{{route('about')}}">About Us</a>
@@ -72,10 +72,10 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    <a href="{{route('dashboard')}}" class="dropdown-item">Dashboard</a>
                                 </div>
                             </li>
                         @endguest
