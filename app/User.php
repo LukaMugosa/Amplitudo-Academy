@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -37,10 +38,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
+
     public function posts(){
         return $this->hasMany('App\Post');
     }
-
     public function isAdmin(){
         $name = $this->role->name;
         return ($name === 'ROLE_ADMIN');
@@ -57,12 +61,16 @@ class User extends Authenticatable
         $name = $this->role->name;
         return ($name === 'ROLE_GUEST');
     }
+
     public function isStudent(){
         $name = $this->role->name;
         return ($name === 'ROLE_STUDENT');
     }
-
-    public function role(){
-        return $this->belongsTo('App\Role');
+    public function abilities(){
+        return $this->role->abilities->flatten()->pluck('name')->unique();
     }
+    public function courses(){
+        return $this->belongsToMany('App\Course');
+    }
+
 }
