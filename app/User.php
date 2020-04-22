@@ -72,5 +72,28 @@ class User extends Authenticatable
     public function courses(){
         return $this->belongsToMany('App\Course');
     }
-
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
+    public function assignments(){
+        return $this->hasMany('App\Assignment');
+    }
+    public function assignmentsManyToMany(){
+        return $this->belongsToMany('App\Assignment');
+    }
+    public function reports(){
+        return $this->hasMany('App\Report');
+    }
+    public function reportsManyToMany(){
+        return $this->belongsToMany('App\Report');
+    }
+    public function ratings(){
+        return $this->hasMany('App\Rating');
+    }
+    public function payments(){
+        return $this->hasMany('App\Payment');
+    }
+    public function profile(){
+        return $this->hasOne('App\Profile');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseUserTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateCourseUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_user', function (Blueprint $table) {
-            $table->primary(['course_id','user_id']);
-            $table->unsignedBigInteger('course_id');
+        Schema::create('ratings', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-
+            $table->unsignedBigInteger('course_id');
+            $table->enum('rating_value',['1','2','3','4','5']);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateCourseUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_user');
+        Schema::dropIfExists('ratings');
     }
 }
