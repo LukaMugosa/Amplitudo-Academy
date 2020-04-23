@@ -14,14 +14,14 @@ class CreateProfilesTable extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->primary();
+            $table->unsignedBigInteger('id')->primary();
             $table->text('description');
             $table->string('phone_number');
             $table->string('github_profile_link');
             $table->string('linkedin_profile_link');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

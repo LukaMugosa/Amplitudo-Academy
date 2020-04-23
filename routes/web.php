@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/profile', 'ProfilesController@index')->name('profile');
 Route::get('/','PagesController@index');
 Route::get('/courses','PagesController@courses')->name('courses');
 Route::get('/about','PagesController@about')->name('about');
-
-
+Route::get('/edit_blog',function (){return "cao admine!";})->middleware('can:edit_blog')->name('edit_blog');
+Route::get('/dashboard', function (){return view('dashboards.dashboard');})->name('dashboard');
+Route::resource('/', 'UsersController');
+Route::get('/profile/{id}','ProfilesController@show');
 Route::resource('posts', 'PostsController');

@@ -2,24 +2,14 @@
 
 @section('content')
     @if(Auth::user()->isAdmin())
-       <div class="dashboard-admin">
-            Admin
-       </div>
+        @include('layouts.dashboards.admin_dashboard')
     @elseif(Auth::user()->isMentor())
-        <div class="dashboard-mentor">
-            Mentor
-        </div>
+        @include('layouts.dashboards.mentor_dashboard')
     @elseif(Auth::user()->isStudent())
-        <div class="dashboard-student">
-            Student
-        </div>
+        @include('layouts.dashboards.student_dashboard')
     @elseif(Auth::user()->isSupervisor())
-        <div class="dashboard-supervisor">
-            Supervisor
-        </div>
+        @include('layouts.dashboards.supervisor_dashboard')
     @elseif(Auth::user()->isGuest())
-        <div class="dashboard-guest">
-            guest
-        </div>
+        @include('layouts.dashboards.guest_dashboard')
     @endif
 @endsection
