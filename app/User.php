@@ -98,4 +98,33 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne('App\Profile');
     }
+
+    public static function getAllMentors(){
+        $mentors = [];
+        $users = User::all();
+        foreach ($users as $user){
+            if($user->isMentor())
+                array_push($mentors, $user);
+        }
+        return $mentors;
+    }
+    public static function getAllStudents(){
+        $students = [];
+        $users = User::all();
+        foreach ($users as $user){
+            if($user->isStudent())
+                array_push($students, $user);
+        }
+        return $students;
+    }
+    public static function getAllSupervisors(){
+        $supervisors = [];
+        $users = User::all();
+        foreach ($users as $user){
+            if($user->isSupervisor())
+                array_push($supervisors, $user);
+        }
+        return $supervisors;
+    }
+
 }

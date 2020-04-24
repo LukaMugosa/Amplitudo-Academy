@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm pt-0 pr-0  pb-0 sticky-top">
             <div class="container navigacija mr-0">
                 <div class="logo">
-                    <a class="navbar-brand ml-0" id="logo" href="{{ url('/') }}">
+                    <a class="navbar-brand ml-0" id="logo" href="{{ url('/home') }}">
                         <img class="mr-2" src="{{asset('images/logo.jpg')}}" alt="logo.jpg"> {{ config('app.name', 'AmplitudoAcademy') }}
                     </a>
                 </div>
@@ -39,7 +39,7 @@
                     <ul class="navbar-nav ml-auto nav__custom">
                         <!-- Authentication Links -->
                         <li class="nav-item nav__custom__item pl-2 pr-2">
-                            <a class="nav-link text-light" href="/">Home</a>
+                            <a class="nav-link text-light" href="{{route('home')}}">Home</a>
                         </li>
                         <li class="nav-item nav__custom__item pl-2 pr-2">
                             <a class="nav-link text-light" href="{{route('courses')}}">Courses</a>
@@ -68,7 +68,6 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="{{url('/')}}" class="dropdown-item">Dashboard</a>
-                                    @yield('dashboard_menu')
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
