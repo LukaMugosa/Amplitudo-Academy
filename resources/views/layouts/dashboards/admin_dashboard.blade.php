@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
 @section('links')
     <link rel="stylesheet" href="{{asset('css/dashboard_style.css')}}">
 @endsection
@@ -12,19 +10,19 @@
             <a class="link" href="/profile/{{auth()->user()->id}}">More info</a>
         </div>
         <div class="dashboard-item">
-            <span class="number">150</span>
+            <span class="number">{{$students}}</span>
             <i class="fas fa-user-graduate"></i>
             <span>Total students</span>
             <a class="link" href="{{route('students')}}">More Info</a>
         </div>
         <div class="dashboard-item">
-            <span class="number">150</span>
+            <span class="number">{{$mentors}}</span>
             <i class="fas fa-chalkboard-teacher"></i>
             <span>Total mentors</span>
             <a class="link" href="{{route('mentors')}}">More Info</a>
         </div>
         <div class="dashboard-item">
-            <span class="number">150</span>
+            <span class="number">{{$supervisors}}</span>
             <i class="fas fa-user-tie"></i>
             <span>Total supervisors</span>
             <a class="link" href="{{route('supervisors')}}">More Info</a>

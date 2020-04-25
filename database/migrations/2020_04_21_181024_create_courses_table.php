@@ -15,9 +15,14 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->text('description');
+            $table->unsignedBigInteger('mentor_id');
+            $table->string('title');
+            $table->text('about_course');
+            $table->mediumText('description');
+            $table->double('price');
             $table->timestamps();
+
+            $table->foreign('mentor_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

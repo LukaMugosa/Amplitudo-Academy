@@ -16,9 +16,11 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
             $table->text('description');
+            $table->string('address');
             $table->string('phone_number');
-            $table->string('github_profile_link');
-            $table->string('linkedin_profile_link');
+            $table->string('github_profile_link')->nullable();
+            $table->string('linkedin_profile_link')->nullable();
+            $table->string('instagram_profile_link')->nullable();
             $table->timestamps();
 
             $table->foreign('id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

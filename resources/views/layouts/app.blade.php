@@ -42,7 +42,7 @@
                             <a class="nav-link text-light" href="{{route('home')}}">Home</a>
                         </li>
                         <li class="nav-item nav__custom__item pl-2 pr-2">
-                            <a class="nav-link text-light" href="{{route('courses')}}">Courses</a>
+                            <a class="nav-link text-light" href="{{url('/courses')}}">Courses</a>
                         </li>
                         <li class="nav-item nav__custom__item pl-2 pr-2">
                             <a class="nav-link text-light" href="{{url('/posts')}}">Blog</a>

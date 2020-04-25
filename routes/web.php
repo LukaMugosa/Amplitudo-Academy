@@ -21,12 +21,13 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home','PagesController@index')->name('home');
-Route::get('/courses','PagesController@courses')->name('courses');
+Route::resource('/courses','CoursesController');
 Route::get('/about','PagesController@about')->name('about');
 Route::get('/mentors','MentorsController@index')->name('mentors');
 Route::get('/supervisors','SupervisorsController@index')->name('supervisors');
 Route::get('/students','StudentsController@index')->name('students');
-Route::get('/', function (){return view('dashboards.dashboard');})->name('dashboard')->middleware('auth');
+Route::get('/', 'DashboardController@index')->name('dashboard')->middleware('auth');
+
 
 Route::get('/profile/{id}','ProfilesController@show');
 Route::resource('posts', 'PostsController');
