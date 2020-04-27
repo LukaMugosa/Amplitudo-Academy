@@ -72,7 +72,7 @@ class User extends Authenticatable
         return $this->role->abilities->flatten()->pluck('name')->unique();
     }
     public function courses(){
-        return $this->belongsToMany('App\Course');
+        return $this->belongsToMany('App\Course')->withTimestamps();
     }
     public function course(){
         return $this->hasMany('App\Course');
@@ -84,7 +84,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Assignment');
     }
     public function assignmentsManyToMany(){
-        return $this->belongsToMany('App\Assignment');
+        return $this->belongsToMany('App\Assignment')->withTimestamps();
     }
     public function reports(){
         return $this->hasMany('App\Report');
@@ -128,6 +128,12 @@ class User extends Authenticatable
                 array_push($supervisors, $user);
         }
         return $supervisors;
+    }
+    public function project(){
+        return $this->hasMany('App\Project');
+    }
+    public function projects(){
+        return $this->belongsToMany('App\Project')->withTimestamps();
     }
 
 }

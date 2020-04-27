@@ -13,6 +13,6 @@ class Comment extends Model
         return $this->belongsToMany('App\Post');
     }
     public function courses(){
-        return $this->belongsToMany('App\Course');
+        return $this->belongsToMany('App\Course')->withTimestamps();
     }
 }

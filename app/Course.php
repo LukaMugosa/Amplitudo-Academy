@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     public function users(){
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User')->withTimestamps();
     }
     public function user(){
         return $this->belongsTo('App\User');
     }
     public function comments(){
-        return $this->belongsToMany('App\Comment');
+        return $this->belongsToMany('App\Comment')->withTimestamps();
     }
     public function ratings(){
         return $this->hasMany('App\Rating');
