@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:view_students');
+//        $this->middleware('can:evaluate_student');
+    }
+
     /**
      * Display a listing of the resource.
      *

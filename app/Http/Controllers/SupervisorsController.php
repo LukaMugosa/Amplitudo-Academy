@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class SupervisorsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:interact_with_users');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +31,7 @@ class SupervisorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.supervisors.create');
     }
 
     /**

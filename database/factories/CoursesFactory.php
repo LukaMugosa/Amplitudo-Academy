@@ -10,7 +10,7 @@ $factory->define(Course::class, function (Faker $faker) {
         'mentor_id' => 2,
         'title' => $faker->name,
         'about_course' => $faker->sentence,
-        'description' => $faker->paragraphs(6),
+        'description' => $faker->paragraph,
         'price' => $faker->randomNumber(3),
     ];
 });

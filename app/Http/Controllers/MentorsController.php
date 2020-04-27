@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class MentorsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:view_mentors');
+        $this->middleware('can:evaluate_mentors');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +31,7 @@ class MentorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.mentors.create');
     }
 
     /**

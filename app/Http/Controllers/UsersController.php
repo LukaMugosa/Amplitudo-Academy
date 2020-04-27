@@ -12,10 +12,18 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('can:interact_with_users');
+        $this->middleware('can:assign_roles');
+    }
+
     public function index()
     {
         $users = User::all();
-        return view('layouts.dashboards.admin_dashboard')->with(['users' => $users]);
+        return view('users.index')->with('users',$users);
     }
 
     /**
@@ -25,7 +33,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

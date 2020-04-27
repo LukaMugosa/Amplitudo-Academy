@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:create_posts');
+        $this->middleware('can:edit_posts');
+//        $this->middleware('can:comment_posts');
+//        $this->middleware('can:like_posts');
+    }
+
     /**
      * Display a listing of the resource.
      *
