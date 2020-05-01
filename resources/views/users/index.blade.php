@@ -1,3 +1,6 @@
-<pre>
-    {{json_encode($users)}}
-</pre>
+@extends('layouts.dashboard_layout')
+
+@section('content')
+   @include('users.display_users')
+@endsection
+

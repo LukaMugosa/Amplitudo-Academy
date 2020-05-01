@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/posts', 'PostsController@index');
-Route::get('/mentors','MentorsController@index');
+//Route::get('/mentors','MentorsController@index');
+Route::resource('mentors','MentorsController');

@@ -10,7 +10,7 @@ class StudentsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:view_students');
+//        $this->middleware('can:view_students');
 //        $this->middleware('can:evaluate_student');
     }
 

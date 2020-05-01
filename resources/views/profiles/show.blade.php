@@ -4,12 +4,6 @@
     <link rel="stylesheet" href="{{asset('css/profile_style.css')}}">
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 @endsection
-@section('dashboard_menu')
-    <a class="dropdown-item" href="/profile/{{auth()->user()->id}}">My Profile</a>
-    <a class="dropdown-item" href="#">Payments</a>
-    <a class="dropdown-item" href="#">Add Mentor</a>
-    <a class="dropdown-item" href="#">Add Supervisor</a>
-@endsection
 
 @section('content')
 <div class="heading">
