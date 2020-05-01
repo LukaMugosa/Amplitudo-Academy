@@ -1,4 +1,5 @@
-<div class="card w-75 ml-auto mr-0 mt-5">
+<div class="content-wrapper">
+<div class="card w-100 ml-auto mr-auto mt-5">
     <div class="card-header bg-primary">
         <h3 class="card-title">All Users</h3>
     </div>
@@ -65,6 +66,7 @@
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
+</div>
 </div>
 <!-- /.modal -->
 @section('additional-scripts')

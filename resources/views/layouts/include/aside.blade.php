@@ -92,16 +92,39 @@
                             <p>My Courses</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{url('/courses/create')}}" class="nav-link">
+                            <i class="fas fa-user-graduate nav-icon"></i>
+                            <p>Add New Course</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('/my-courses')}}" class="nav-link">
+                            <i class="fas fa-user-graduate nav-icon"></i>
+                            <p>All Assignments</p> <!-- dodati tamo modal za kreiranje domaceg? -->
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('/my-courses')}}" class="nav-link">
+                            <i class="fas fa-user-graduate nav-icon"></i>
+                            <p>All Projects</p> <!-- dodati tamo modal za kreiranje domaceg? -->
+                        </a>
+                    </li>
                @endif
 
                @if(auth()->user()->isStudent())
 
                @endif
 
-               @if(auth()->user()->isGuest())
+               @if(auth()->user()->isSupervisor())
 
                @endif
-
+                <li class="nav-item">
+                    <a href="{{url('/posts')}}" class="nav-link">
+                        <i class="fas fa-blog nav-icon"></i>
+                        <p>View Blog</p> <!-- dodati tamo modal za kreiranje posta -->
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault();

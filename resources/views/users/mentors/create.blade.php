@@ -1,7 +1,8 @@
 @extends('layouts.dashboard_layout')
 
 @section('content')
-    <section class="content w-75 ml-auto mr-5 mt-4">
+    <div class="content-wrapper">
+    <section class="content w-75 ml-auto mr-auto mt-4">
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
@@ -51,6 +52,7 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+    </div>
 @endsection
 @section('additional-scripts')
     <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
