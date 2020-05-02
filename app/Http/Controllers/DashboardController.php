@@ -24,9 +24,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $students = count(User::getAllStudents());
-        $mentors = count(User::getAllMentors());
-        $supervisors = count(User::getAllSupervisors());
-        return view('dashboards.dashboard',compact('students','mentors','supervisors'));
+        return view('dashboards.dashboard');
     }
 }

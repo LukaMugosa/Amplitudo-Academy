@@ -81,43 +81,106 @@
 
                @if(auth()->user()->isMentor())
                     <li class="nav-item">
-                        <a href="{{url('/students')}}"class="nav-link">
+                        <a href="{{url('/students')}}" class="nav-link">
                             <i class="fas fa-user-graduate nav-icon"></i>
                             <p>My Students</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{url('/my-courses')}}" class="nav-link">
-                            <i class="fas fa-user-graduate nav-icon"></i>
+                            <i class="fas fa-book nav-icon"></i>
                             <p>My Courses</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('/courses/create')}}" class="nav-link">
-                            <i class="fas fa-user-graduate nav-icon"></i>
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-plus-circle nav-icon"></i>
                             <p>Add New Course</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('/my-courses')}}" class="nav-link">
-                            <i class="fas fa-user-graduate nav-icon"></i>
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-book-reader nav-icon"></i>
                             <p>All Assignments</p> <!-- dodati tamo modal za kreiranje domaceg? -->
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('/my-courses')}}" class="nav-link">
-                            <i class="fas fa-user-graduate nav-icon"></i>
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-tasks nav-icon"></i>
                             <p>All Projects</p> <!-- dodati tamo modal za kreiranje domaceg? -->
                         </a>
                     </li>
                @endif
 
                @if(auth()->user()->isStudent())
-
-               @endif
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-certificate nav-icon"></i>
+                            <p>Badges</p> <!-- dodati tamo modal za kreiranje domaceg? -->
+                        </a>
+                    </li><li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-book nav-icon"></i>
+                            <p>My Courses</p> <!-- dodati tamo modal za kreiranje domaceg? -->
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#"class="nav-link">
+                            <i class="fas fa-user-graduate nav-icon"></i>
+                            <p>My Mentors</p>
+                        </a>
+                    </li
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-school nav-icon"></i>
+                            <p>Homework</p> <!-- dodati tamo modal za kreiranje domaceg? -->
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-tasks nav-icon"></i>
+                            <p>Projects</p> <!-- dodati tamo modal za kreiranje domaceg? -->
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-globe nav-icon"></i>
+                            <p>All Courses</p> <!-- dodati tamo modal za kreiranje domaceg? -->
+                        </a>
+                    </li>
+                @endif
 
                @if(auth()->user()->isSupervisor())
-
+                    <li class="nav-item">
+                        <a href="{{url('/students')}}" class="nav-link">
+                            <i class="fas fa-user-graduate nav-icon"></i>
+                            <p>All Students</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-chalkboard-teacher nav-icon"></i>
+                            <p>My Mentors</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-tasks nav-icon"></i>
+                            <p>All Projects</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-plus-square nav-icon"></i>
+                            <p>Make Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-atlas nav-icon"></i>
+                            <p>View Reports</p>
+                        </a>
+                    </li>
                @endif
                 <li class="nav-item">
                     <a href="{{url('/posts')}}" class="nav-link">

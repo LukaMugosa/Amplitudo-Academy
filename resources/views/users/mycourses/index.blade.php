@@ -4,7 +4,7 @@
     <div class="col-md-6 ml-auto mr-auto">
         <div class="card">
             <div class="card-header bg-danger">
-                <h3 class="card-title">Simple Full Width Table</h3>
+                <h3 class="card-title">Your Courses</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">

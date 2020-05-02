@@ -14,30 +14,45 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form role="form" id="quickForm">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Full Name</label>
-                                        <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword2">Repeat Password</label>
-                                        <input type="password" name="password2" class="form-control" id="exampleInputPassword2" placeholder="Repeat Password">
-                                    </div>
+                            @if(isset($success))
+                                <div class="alert alert-dark">{{$success}} </div>
+                            @endif
+                            {!! Form::open(['action' => 'SupervisorsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                            <div class="card-body">
+                                <div class="form-group">
+                                    {{Form::label('name', 'Full Name')}}
+                                    {{Form::text('name', '', ['class' => 'form-control ', 'placeholder' => 'Enter Full Name','id' => 'exampleInputName'])}}
+                                    @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-group">
+                                    {{Form::label('exampleInputEmail1', 'Email')}}
+                                    {{Form::email('email', '', ['class' => 'form-control', 'id' => 'exampleInputEmail1', 'placeholder' => 'Enter email'])}}
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                            </form>
+                                <div class="form-group">
+                                    {{Form::label('exampleInputPassword1', 'Password')}}
+                                    {{Form::password('password1', ['class' => 'form-control', 'id' => 'exampleInputPassword1', 'placeholder' => 'Password'])}}
+                                    @error('password1')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('exampleInputPassword1', 'Repeat Password')}}
+                                    {{Form::password('password2', ['class' => 'form-control', 'id' => 'exampleInputPassword2', 'placeholder' => 'Repeat Password'])}}
+                                    @error('password2')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                {{Form::submit('Submit',['class' => 'btn btn-primary'])}}
+                            </div>
+                            {!! Form::close() !!}
                         </div>
                         <!-- /.card -->
                     </div>

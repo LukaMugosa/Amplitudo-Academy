@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MentorSupervisorRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -38,11 +39,17 @@ class SupervisorsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function store(Request $request)
+    public function store(MentorSupervisorRequest $request)
     {
-        //
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password1'));
+        $user->role_id = '4';
+        $user->save();
+        return view('users.supervisors.create')->with('success', 'Supervisor added successfully');
     }
 
     /**

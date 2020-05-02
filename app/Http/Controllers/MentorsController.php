@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MentorSupervisorRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -40,11 +41,15 @@ class MentorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function store(Request $request)
+    public function store(MentorSupervisorRequest $request)
     {
-        $user = new User($request->all());
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password1'));
+        $user->role_id = '2';
         $user->save();
-        return response()->json($user);
+        return view('users.mentors.create')->with('success', 'Mentor added successfully');
     }
     /**
      * Show the form for editing the specified resource.
@@ -65,7 +70,7 @@ class MentorsController extends Controller
      * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      */
-    public function update(Request $request, User $user)
+    public function update(MentorSupervisorRequest $request, User $user)
     {
         $user->fill($request->all());
         $user->save();
