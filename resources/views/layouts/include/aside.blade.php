@@ -93,7 +93,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{url('/courses/create')}}" class="nav-link">
                             <i class="fas fa-plus-circle nav-icon"></i>
                             <p>Add New Course</p>
                         </a>

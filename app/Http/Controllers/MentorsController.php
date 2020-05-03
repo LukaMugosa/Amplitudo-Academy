@@ -51,41 +51,47 @@ class MentorsController extends Controller
         $user->save();
         return view('users.mentors.create')->with('success', 'Mentor added successfully');
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
-        $mentor = User::find($id);
-        return view('users.mentors.edit')->with('mentor',$mentor);
+        $user = User::find($id);
+        return view('users.mentors.edit')->with('user',$user);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param User $user
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View|void
      */
-    public function update(MentorSupervisorRequest $request, User $user)
+    public function update(Request $request, $id)
     {
-        $user->fill($request->all());
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password1'));
         $user->save();
-        return view('users.mentors.index')->with('success','Mentor updated successfuly!');
+        return redirect('mentors/')->with('success','User updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View|void
+     * @throws \Exception
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user = User::find($id);
         $user->delete();
-        return view('users.mentors.index')->with('success','User deleted!');
+        return redirect('/mentors')->with('success','User deleted!');
     }
 }

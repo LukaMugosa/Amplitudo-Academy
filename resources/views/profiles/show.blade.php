@@ -9,10 +9,17 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Profile</h1>
+                        @if(auth()->user()->isAdmin())
+                            <a href="/{{strtolower(substr($profile->user->role->name,5))}}s/edit/{{$profile->user->id}}" class="btn btn-success mt-0">Edit User</a>
+                            {!! Form::open(['action' => ['UsersController@destroy',$profile->user->id],'method' => 'POST' , 'class' => 'mt-0' , 'style' => 'display:inline-block;']) !!}
+                                {{Form::hidden('_method','DELETE')}}
+                                {{ Form::submit('Delete User', ['class' => 'btn btn-danger']) }}
+                            {!! Form::close() !!}
+                        @endif
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('http://127.0.0.1:8000/')}}">Dashboard</a></li>
                             <li class="breadcrumb-item active">User Profile</li>
                         </ol>
                     </div>
@@ -40,15 +47,17 @@
                                 <p class="text-muted text-center">{{substr($profile->user->role->name,5)}}</p>
 
                                 <ul class="list-group list-group-unbordered mb-3">
-                                    <li class="list-group-item">
-                                        <b>Enrollments</b> <a class="float-right">{{count($profile->user->courses)}}</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Badges</b> <a class="float-right">0</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>XP</b> <a class="float-right">0 points</a>
-                                    </li>
+                                    @if($profile->user->isStudent())
+                                        <li class="list-group-item">
+                                            <b>Enrollments</b> <a class="float-right">{{count($profile->user->courses)}}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Badges</b> <a class="float-right">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>XP</b> <a class="float-right">0 points</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                             <!-- /.card-body -->

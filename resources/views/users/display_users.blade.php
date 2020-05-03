@@ -1,4 +1,7 @@
 <div class="content-wrapper">
+    @if(isset($success))
+        <div class="alert alert-info">{{$success}}</div>
+    @endif
 <div class="card w-100 ml-auto mr-auto mt-5">
     <div class="card-header bg-primary">
         <h3 class="card-title">All Users</h3>
@@ -25,9 +28,13 @@
                     <td>{{$user->created_at}}</td>
                     <td>{{$user->updated_at}}</td>
                     <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
+                        <a href="/profile/{{$user->id}}" class="btn btn-success btn-group-sm">
                             <i class="fas fa-eye"></i>
-                        </button>
+                        </a>
+                        {!! Form::open(['action' => ['UsersController@destroy',$user->id],'method' => 'POST' , 'class' => 'mt-0' , 'style' => 'display:inline-block;']) !!}
+                        {{Form::hidden('_method','DELETE')}}
+                        {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-group-sm'] )  }}
+                        {!! Form::close() !!}
                     </td>
                 </tr>
             @endforeach
@@ -77,17 +84,13 @@
     <script>
         $(function () {
             $("#example1").DataTable({
-                "responsive": true,
-                "autoWidth": true,
-            });
-            $('#example2').DataTable({
                 "paging": true,
-                "lengthChange": false,
-                "searching": false,
+                "lengthChange": true,
+                "searching": true,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,
-                "responsive": true,
+                "responsive": false,
             });
         });
     </script>

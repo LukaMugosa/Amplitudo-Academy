@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Http\Requests\CoursesRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 class CoursesController extends Controller
@@ -27,22 +29,29 @@ class CoursesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('courses.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function store(Request $request)
+    public function store(CoursesRequest $request)
     {
-        //
+        $course = new Course();
+        $course->mentor_id = auth()->user()->id;
+        $course->title = $request->input('title');
+        $course->about_course = $request->input('about_course');
+        $course->description = $request->input('description');
+        $course->price = $request->input('price');
+        $course->save();
+        return view('courses.create')->with('success', 'You have successfully added a new course!');
     }
 
     /**
@@ -84,10 +93,12 @@ class CoursesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        $course->delete();
+        return redirect('/my-courses')->with('success','Course deleted successfully!');
     }
 }

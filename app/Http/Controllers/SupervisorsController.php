@@ -67,11 +67,12 @@ class SupervisorsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('users.supervisors.edit')->with('user',$user);
     }
 
     /**
@@ -79,11 +80,16 @@ class SupervisorsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(MentorSupervisorRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password1'));
+        $user->save();
+        return redirect('/supervisors')->with('success','Supervisor updated successfully!');
     }
 
     /**

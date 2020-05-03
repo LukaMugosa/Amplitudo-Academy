@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    protected $fillable =['mentor_id','title','about_course','description','price'];
+
     public function users(){
         return $this->belongsToMany('App\User')->withTimestamps();
     }
@@ -18,7 +20,15 @@ class Course extends Model
     public function ratings(){
         return $this->hasMany('App\Rating');
     }
-
+    public function avgRating(){
+        return \DB::table('ratings')->avg('rating_value');
+    }
+    public function numOfRatings(){
+        return count(\DB::select("select * from ratings where course_id={$this->id}"));
+    }
+    public function numOfStudents(){
+        return count(\DB::select("select * from course_user where course_id={$this->id}"));
+    }
     public function mentorOnCourses(){
         return \DB::select("SELECT * FROM users WHERE role_id=2");
     }

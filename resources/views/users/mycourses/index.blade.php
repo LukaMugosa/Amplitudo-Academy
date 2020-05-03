@@ -3,18 +3,18 @@
 @section('content')
     <div class="col-md-6 ml-auto mr-auto">
         <div class="card">
-            <div class="card-header bg-danger">
+            <div class="card-header bg-danger mb-2">
                 <h3 class="card-title">Your Courses</h3>
             </div>
             <!-- /.card-header -->
-            <div class="card-body p-0">
-                <table class="table" id="example1">
+            <div class="card-body p-4">
+                <table class="table mt-2" id="example1">
                     <thead>
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>Title</th>
                             <th>Number of enrollments</th>
-                            <th>Preview Course</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,7 +24,11 @@
                                 <td>{{$course->title}}</td>
                                 <td><h2><span class="badge badge-secondary">{{$course->studentsOnThisCourse()}}</span></h2></td>
                                 <td>
-                                    <button class="btn btn-primary" type="submit"><i class="fas fa-eye"></i></button>
+                                    <a href="{{url("/courses/$course->id")}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                                    {!! Form::open(['action' => ['CoursesController@destroy',$course->id],'method' => 'POST' , 'class' => 'mt-0' , 'style' => 'display:inline-block;']) !!}
+                                    {{Form::hidden('_method','DELETE')}}
+                                    {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-group-sm'] )  }}
+                                    {!! Form::close() !!}
                                 </td>
                             </tr>
                         @endforeach

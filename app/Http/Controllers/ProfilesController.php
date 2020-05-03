@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
@@ -13,7 +14,10 @@ class ProfilesController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id){
+
         $profile = Profile::find($id);
+        if(is_null($profile))
+            return view('profiles.not_found');
         return view('profiles.show')->with('profile',$profile);
     }
     /**
@@ -40,12 +44,15 @@ class ProfilesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        if(is_null($user))
+            return view('profiles.not_found');
+        return view('users.edit')->with('user',$user);
     }
 
     /**
@@ -70,4 +77,5 @@ class ProfilesController extends Controller
     {
         //
     }
+
 }
