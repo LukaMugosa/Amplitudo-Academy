@@ -40,7 +40,7 @@
                         <th style="width: 10px">#</th>
                         <th>Title</th>
                         <th>Deadline</th>
-                        <th>Preview Description</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,9 +50,8 @@
                             <td>{{$assignment->title}}</td>
                             <td>{{$assignment->deadline}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal-default">
-                                    <i class="fas fa-eye"></i>
-                                </button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target-id="{{$assignment->id}}" data-target="#myModal"><i class="fas fa-eye"></i></button>
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target-id="{{$assignment->id}}" data-target="#modal-default"><i class="fas fa-edit"></i></button>
                             </td>
                         </tr>
                     @endforeach
@@ -73,9 +72,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <p>One fine body&hellip;</p>
-                    </div>
+                    <div class="modal-body"></div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save changes</button>
@@ -86,6 +83,17 @@
             <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Description</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </div>
         <div class="modal fade" id="modal-lg">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -126,6 +134,26 @@
     </div>
 @endsection
 @section('additional-scripts')
+    <script>
+        $(document).ready(function(){
+            $("#myModal").on("show.bs.modal", function(e) {
+                var id = $(e.relatedTarget).data('target-id');
+                $.get( "/assignments/" + id, function( data ) {
+                    $(".modal-body").html(data.html);
+                });
+
+            });
+        });
+        $(document).ready(function(){
+            $("#modal-default").on("show.bs.modal", function(e) {
+                var id = $(e.relatedTarget).data('target-id');
+                $.get( "/assignments/edit/" + id, function( data ) {
+                    $(".modal-body").html(data.html);
+                });
+
+            });
+        });
+    </script>
     <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>

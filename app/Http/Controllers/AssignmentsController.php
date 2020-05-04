@@ -59,22 +59,26 @@ class AssignmentsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
+        $assignment = Assignment::find($id);
+        $returnHTML = view('assignments.modal-body-view',['assignment'=> $assignment])->render();
+        return response()->json( ['html' => $returnHTML]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function edit($id)
     {
-        //
+        $assignment = Assignment::find($id);
+        $returnHTML = view('assignments.modal-body-view',['assignment'=> $assignment])->render();
+        return response()->json( ['html' => $returnHTML]);
     }
 
     /**
@@ -82,21 +86,17 @@ class AssignmentsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(AssignmentsRequest $request, $id)
     {
-        //
+        $assignment = Assignment::find($id);
+        $assignment->user_id = auth()->user()->id;
+        $assignment->title = $request->input('title');
+        $assignment->description = $request->input('description');
+        $assignment->deadline =  substr($request->input('deadline'), 10).now();
+        $assignment->save();
+        return redirect('/assignments')->with('success','Assignment updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

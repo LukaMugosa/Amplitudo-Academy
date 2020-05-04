@@ -35,7 +35,10 @@ Route::resource('/assignments','AssignmentsController');
 Route::get('/profile/{id}','ProfilesController@show');
 Route::resource('posts', 'PostsController');
 //Route::get('/profile', 'ProfilesController@index')->name('profile');
-
+Route::get('assignments/{id}',[
+    'as'=>'assignments',
+    'uses'=> 'AssignmentsController@loadModal'
+]);
 Route::resource('/users', 'UsersController');
 
 //Route::get('/edit_blog',function (){return "cao admine!";})->middleware('can:edit_blog')->name('edit_blog');
