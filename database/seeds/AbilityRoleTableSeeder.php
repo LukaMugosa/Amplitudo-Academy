@@ -25,6 +25,7 @@ class AbilityRoleTableSeeder extends Seeder
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'view_students'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'assign_homework'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'evaluate_homework'));
+            $role->allowTo(App\Ability::all()->where('name' ,'=', 'view_homeworks'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'assign_project'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'evaluate_project'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'evaluate_student'));

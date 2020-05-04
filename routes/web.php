@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
 Auth::routes();
 
 Route::get('/home','PagesController@index')->name('home');
@@ -32,7 +31,7 @@ Route::get('/supervisors','SupervisorsController@index')->name('supervisors');
 Route::get('/students','StudentsController@index')->name('students');
 Route::get('/', 'DashboardController@index')->name('dashboard')->middleware('auth');
 Route::resource('/course','CoursesController');
-
+Route::resource('/assignments','AssignmentsController');
 Route::get('/profile/{id}','ProfilesController@show');
 Route::resource('posts', 'PostsController');
 //Route::get('/profile', 'ProfilesController@index')->name('profile');

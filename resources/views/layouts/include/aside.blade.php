@@ -99,7 +99,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('assignments.index')}}" class="nav-link">
                             <i class="fas fa-book-reader nav-icon"></i>
                             <p>All Assignments</p> <!-- dodati tamo modal za kreiranje domaceg? -->
                         </a>

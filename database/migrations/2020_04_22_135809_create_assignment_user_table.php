@@ -17,6 +17,7 @@ class CreateAssignmentUserTable extends Migration
             $table->primary(['assignment_id','user_id']);
             $table->unsignedBigInteger('assignment_id');
             $table->unsignedBigInteger('user_id');
+            $table->boolean('is_done')->default(false);
             $table->timestamps();
 
             $table->foreign('assignment_id')->references('id')->on('assignments')->onDelete('cascade')->onUpdate('cascade');

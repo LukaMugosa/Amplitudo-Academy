@@ -9,6 +9,7 @@ $factory->define(\App\Assignment::class, function (Faker $faker) {
     return [
         'user_id' => 2,
         'title' => $faker->word,
-        'description' => $faker->text
+        'description' => $faker->text,
+        'deadline' => $faker->dateTime
     ];
 });

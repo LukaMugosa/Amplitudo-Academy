@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Assignment;
+use App\Http\Requests\AssignmentsRequest;
 use Illuminate\Http\Request;
 
 class AssignmentsController extends Controller
@@ -9,6 +11,7 @@ class AssignmentsController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth');
         $this->middleware('can:assign_homework');
         $this->middleware('can:evaluate_homework');
         $this->middleware('can:view_homeworks');
@@ -17,11 +20,12 @@ class AssignmentsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $assignments = Assignment::all();
+        return view('assignments.index')->with('assignments',$assignments);
     }
 
     /**
@@ -38,11 +42,17 @@ class AssignmentsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(AssignmentsRequest $request)
     {
-        //
+        $assignment = new Assignment();
+        $assignment->user_id = auth()->user()->id;
+        $assignment->title = $request->input('title');
+        $assignment->description = $request->input('description');
+        $assignment->deadline =  substr($request->input('deadline'), 10).now();
+        $assignment->save();
+        return redirect('/assignments')->with('success','Assignment added successfully!');
     }
 
     /**

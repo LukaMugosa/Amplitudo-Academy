@@ -10,7 +10,7 @@
             <h2>{{$course->title}}</h2>
             <h4>{{$course->about_course}}</h4>
             <small>Rating: {{substr($course->avgRating(),0,strlen($course->avgRating())-2)}} ({{$course->numOfRatings()}} ratings) {{$course->numOfStudents()}} students enrolled</small><br>
-            <small>Created bt Mentor Name, Last updated: 4/2020</small><br>
+            <small>Created by: {{$course->user->name}}, Last updated: 4/2020</small><br>
             @if(Auth::check())
                 @if(auth()->user()->id === $course->mentor_id)
                     <a href="#" class="btn btn-outline-warning">Edit Your Course</a>
