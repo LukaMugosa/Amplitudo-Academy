@@ -28,17 +28,16 @@ Route::resource('/mentors','MentorsController');
 Route::resource('/supervisors','SupervisorsController');
 Route::get('/supervisors/edit/{id}','SupervisorsController@edit');
 Route::get('/supervisors','SupervisorsController@index')->name('supervisors');
-Route::get('/students','StudentsController@index')->name('students');
+Route::get('/students','StudentsController@index')->name('astudents');
 Route::get('/', 'DashboardController@index')->name('dashboard')->middleware('auth');
 Route::resource('/course','CoursesController');
 Route::resource('/assignments','AssignmentsController');
 Route::get('/profile/{id}','ProfilesController@show');
 Route::resource('posts', 'PostsController');
+Route::resource('/projects','ProjectsController');
+Route::get('/projects/edit/{id}','ProjectsController@edit');
 //Route::get('/profile', 'ProfilesController@index')->name('profile');
-Route::get('assignments/{id}',[
-    'as'=>'assignments',
-    'uses'=> 'AssignmentsController@loadModal'
-]);
+Route::get('assignments/edit/{id}','AssignmentsController@edit');
 Route::resource('/users', 'UsersController');
 
 //Route::get('/edit_blog',function (){return "cao admine!";})->middleware('can:edit_blog')->name('edit_blog');

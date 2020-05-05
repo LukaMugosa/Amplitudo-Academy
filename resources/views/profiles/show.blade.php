@@ -125,101 +125,65 @@
                                     @endif
                                 </ul>
                             </div><!-- /.card-header -->
+                            <div class="modal fade" id="modal-lg">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Add New Post</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body-2">
+                                            {!! Form::open(['action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    {{Form::label('title', 'Title')}}
+                                                    {{Form::text('title', '', ['class' => 'form-control ', 'placeholder' => 'Enter Full Title Name','id' => 'exampleInputName'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{Form::label('descriptionInput', 'Description')}}
+                                                    {{Form::textarea('description', '', ['class' => 'form-control', 'id' => 'descriptionInput', 'placeholder' => 'Enter some description'])}}
+                                                </div>
+                                                <div class="card-body pad">
+                                                    <div class="mb-3">
+                                                        {{Form::label('body','Post Content')}}
+                                                        {{Form::textarea('body', '', ['class' => 'textarea form-control', 'placeholder' => 'Place some text here', 'style' => 'width: 120%; height: 800px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;'])}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            {{Form::submit('Submit',['class' => 'btn btn-primary'])}}
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.card -->
                             <div class="card-body">
                                 <div class="tab-content">
 
                                     <div class="active tab-pane" id="timeline">
-                                        <!-- The timeline -->
-                                        <div class="timeline timeline-inverse">
-                                            <!-- timeline time label -->
-                                            <div class="time-label">
-                                            <span class="bg-danger">
-                                              10 Feb. 2014
-                                            </span>
-                                            </div>
-                                            <!-- /.timeline-label -->
-                                            <!-- timeline item -->
-                                            <div>
-                                                <i class="fas fa-envelope bg-primary"></i>
 
+                                        <div class="timeline">
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">Add New Post</button>
+                                        </div>
+                                        <div class="posts">
+                                            @foreach($posts as $post)
                                                 <div class="timeline-item">
-                                                    <span class="time"><i class="far fa-clock"></i> 12:05</span>
-
-                                                    <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                                                    <div class="timeline-body">
-                                                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                                        quora plaxo ideeli hulu weebly balihoo...
-                                                    </div>
+                                                    <span class="time"><i class="far fa-clock"></i> {{$post->created_at}}</span>
+                                                    <h3 class="timeline-header">{{$post->title}}</h3>
+                                                    <div class="timeline-body mb-3">{{$post->description}}</div>
                                                     <div class="timeline-footer">
                                                         <a href="#" class="btn btn-primary btn-sm">Read more</a>
                                                         <a href="#" class="btn btn-danger btn-sm">Delete</a>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- END timeline item -->
-                                            <!-- timeline item -->
-                                            <div>
-                                                <i class="fas fa-user bg-info"></i>
-
-                                                <div class="timeline-item">
-                                                    <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                                                    <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                            <!-- END timeline item -->
-                                            <!-- timeline item -->
-                                            <div>
-                                                <i class="fas fa-comments bg-warning"></i>
-
-                                                <div class="timeline-item">
-                                                    <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                                                    <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                                                    <div class="timeline-body">
-                                                        Take me to your leader!
-                                                        Switzerland is small and neutral!
-                                                        We are more like Germany, ambitious and misunderstood!
-                                                    </div>
-                                                    <div class="timeline-footer">
-                                                        <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- END timeline item -->
-                                            <!-- timeline time label -->
-                                            <div class="time-label">
-                                                <span class="bg-success">
-                                                  3 Jan. 2014
-                                                </span>
-                                            </div>
-                                            <!-- /.timeline-label -->
-                                            <!-- timeline item -->
-                                            <div>
-                                                <i class="fas fa-camera bg-purple"></i>
-
-                                                <div class="timeline-item">
-                                                    <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                                    <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                                                    <div class="timeline-body">
-                                                        <img src="http://placehold.it/150x100" alt="...">
-                                                        <img src="http://placehold.it/150x100" alt="...">
-                                                        <img src="http://placehold.it/150x100" alt="...">
-                                                        <img src="http://placehold.it/150x100" alt="...">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- END timeline item -->
-                                            <div>
-                                                <i class="far fa-clock bg-gray"></i>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <!-- /.tab-pane -->

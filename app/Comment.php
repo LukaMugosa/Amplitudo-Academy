@@ -10,7 +10,7 @@ class Comment extends Model
         return $this->belongsTo('App\User');
     }
     public function posts(){
-        return $this->belongsToMany('App\Post');
+        return $this->belongsToMany('App\Post')->withTimestamps();
     }
     public function courses(){
         return $this->belongsToMany('App\Course')->withTimestamps();

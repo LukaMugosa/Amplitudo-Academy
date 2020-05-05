@@ -15,46 +15,16 @@
         </div>
         <div class="comments">
             <h3>Comments:</h3>
-           <div class="comment-container">
-               <div class="profile-picture">
-                   <img id="profile-pic" src="{{asset('images/profile-image.jpg')}}" alt="">
+            @foreach($post->comments as $comment)
+               <div class="comment-container">
+                   <div class="profile-picture">
+                       <img id="profile-pic" src="{{asset('images/profile-image.jpg')}}" alt="">
+                   </div>
+                   <div class="comment-content">
+                       <p>{{$comment->body}}</p>
+                   </div>
                </div>
-               <div class="comment-content">
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, qui.</p>
-               </div>
-           </div>
-           <div class="comment-container">
-               <div class="profile-picture">
-                   <img id="profile-pic" src="{{asset('images/profile-image.jpg')}}" alt="">
-               </div>
-               <div class="comment-content">
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, qui.</p>
-               </div>
-           </div>
-           <div class="comment-container">
-               <div class="profile-picture">
-                   <img id="profile-pic" src="{{asset('images/profile-image.jpg')}}" alt="">
-               </div>
-               <div class="comment-content">
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, qui.</p>
-               </div>
-           </div>
-           <div class="comment-container">
-               <div class="profile-picture">
-                   <img id="profile-pic" src="{{asset('images/profile-image.jpg')}}" alt="">
-               </div>
-               <div class="comment-content">
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, qui.</p>
-               </div>
-           </div>
-           <div class="comment-container">
-               <div class="profile-picture">
-                   <img id="profile-pic" src="{{asset('images/profile-image.jpg')}}" alt="">
-               </div>
-               <div class="comment-content">
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, qui.</p>
-               </div>
-           </div>
+            @endforeach
         </div>
     </div>
 @endsection

@@ -10,5 +10,6 @@ $factory->define(\App\Rating::class, function (Faker $faker) {
         'user_id' => 3,
         'course_id' => $faker->numberBetween(1,20),
         'rating_value' => $faker->numberBetween(1,5),
+        'comment' => $faker->text(200),
     ];
 });

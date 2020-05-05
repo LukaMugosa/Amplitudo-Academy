@@ -105,7 +105,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('projects.index')}}" class="nav-link">
                             <i class="fas fa-tasks nav-icon"></i>
                             <p>All Projects</p> <!-- dodati tamo modal za kreiranje domaceg? -->
                         </a>
@@ -129,7 +129,7 @@
                             <i class="fas fa-user-graduate nav-icon"></i>
                             <p>My Mentors</p>
                         </a>
-                    </li
+                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="fas fa-school nav-icon"></i>
@@ -185,7 +185,7 @@
                 <li class="nav-item">
                     <a href="{{url('/posts')}}" class="nav-link">
                         <i class="fas fa-blog nav-icon"></i>
-                        <p>View Blog</p> <!-- dodati tamo modal za kreiranje posta -->
+                        <p>View Blog</p>
                     </a>
                 </li>
                 <li class="nav-item">

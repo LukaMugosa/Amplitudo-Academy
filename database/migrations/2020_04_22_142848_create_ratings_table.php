@@ -17,7 +17,8 @@ class CreateRatingsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('course_id');
-            $table->enum('rating_value',['1','2','3','4','5']);
+            $table->integer('rating_value');
+            $table->text('comment');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

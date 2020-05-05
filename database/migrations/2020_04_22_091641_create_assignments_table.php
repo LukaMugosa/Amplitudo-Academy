@@ -18,7 +18,7 @@ class CreateAssignmentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('description');
-            $table->dateTime('deadline');
+            $table->date('deadline');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

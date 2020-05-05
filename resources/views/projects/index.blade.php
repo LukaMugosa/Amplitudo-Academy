@@ -10,17 +10,17 @@
     <div class="col-md-6 ml-auto mr-auto">
         <div class="card">
             <div class="card-header bg-danger mb-2">
-                <h3 class="card-title">Assignments Given By You</h3>
+                <h3 class="card-title">Projects Given By You</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-4">
                 <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-lg">Add New</button>
                 <div class="field ">
                     @error('title')
-                        <div class="alert alert-danger w-50" id="error1" role="alert">{{$message}}</div>
+                    <div class="alert alert-danger w-50" id="error1" role="alert">{{$message}}</div>
                     @enderror
                     @error('description')
-                        <div class="alert alert-danger w-75" id="error2" role="alert">{{$message}}</div>
+                    <div class="alert alert-danger w-75" id="error2" role="alert">{{$message}}</div>
                     @enderror
                     @if(session()->has('success'))
                         <div class="alert alert-success w-50" id="success1">
@@ -56,15 +56,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($assignments as $assignment)
+                    @foreach($projects as $project)
                         <tr>
-                            <td>{{$assignment->id}}.</td>
-                            <td>{{$assignment->title}}</td>
-                            <td>{{$assignment->deadline}}</td>
-                            <td><span class="badge badge-info">{{($assignment->deadline >= now()) ? 'In progress' : 'Expired'}}</span></td>
+                            <td>{{$project->id}}.</td>
+                            <td>{{$project->title}}</td>
+                            <td>{{$project->deadline}}</td>
+                            <td><span class="badge badge-info">{{($project->deadline >= now()) ? 'In progress' : 'Expired'}}</span></td>
                             <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target-id="{{$assignment->id}}" data-target="#myModal"><i class="fas fa-eye"></i></button>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target-id="{{$assignment->id}}" data-target="#modal-default-3"><i class="fas fa-edit"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target-id="{{$project->id}}" data-target="#myModal"><i class="fas fa-eye"></i></button>
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target-id="{{$project->id}}" data-target="#modal-default-3"><i class="fas fa-edit"></i></button>
                             </td>
                         </tr>
                     @endforeach
@@ -86,7 +86,6 @@
                         </button>
                     </div>
                     <div class="modal-body-3"></div>
-
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -114,15 +113,26 @@
                         </button>
                     </div>
                     <div class="modal-body-2">
-                        {!! Form::open(['action' => 'AssignmentsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                        {!! Form::open(['action' => 'ProjectsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                         <div class="card-body">
                             <div class="form-group">
                                 {{Form::label('title', 'Title')}}
                                 {{Form::text('title', '', ['class' => 'form-control ', 'placeholder' => 'Enter Full Title Name','id' => 'exampleInputName'])}}
                             </div>
                             <div class="form-group">
-                                {{Form::label('exampleInputEmail1', 'Description')}}
-                                {{Form::textarea('description', '', ['class' => 'form-control', 'id' => 'exampleInputEmail1', 'placeholder' => 'Enter assignment description'])}}
+                                <div class="card card-outline card-info">
+                                    <div class="card-header">
+                                        <h3 class="card-title">
+                                            Describe Project In Detail
+                                        </h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body pad">
+                                        <div class="mb-3">
+                                            {{Form::textarea('project_description', '', ['class' => 'textarea', 'placeholder' => 'Place some text here', 'style' => 'width: 100%; height: 800px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;'])}}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 {{Form::label('inputDeadline', 'Dead line')}}
@@ -148,7 +158,7 @@
         $(document).ready(function(){
             $("#myModal").on("show.bs.modal", function(e) {
                 var id = $(e.relatedTarget).data('target-id');
-                $.get( "/assignments/" + id, function( data ) {
+                $.get( "/projects/" + id, function( data ) {
                     $(".modal-body").html(data.html);
                 });
 
@@ -157,7 +167,7 @@
         $(document).ready(function(){
             $("#modal-default-3").on("show.bs.modal", function(e) {
                 var id = $(e.relatedTarget).data('target-id');
-                $.get( "/assignments/edit/" + id, function( data ) {
+                $.get( "/projects/edit/" + id, function( data ) {
                     $(".modal-body-3").html(data.html);
                 });
 

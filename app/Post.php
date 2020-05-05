@@ -15,7 +15,7 @@ class Post extends Model implements HasMedia
     }
 
     public function comments(){
-        return $this->belongsToMany('App\Comment');
+        return $this->belongsToMany('App\Comment')->withTimestamps();
     }
 
 }

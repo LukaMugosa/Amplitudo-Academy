@@ -24,18 +24,8 @@ class AssignmentsController extends Controller
      */
     public function index()
     {
-        $assignments = Assignment::all();
+        $assignments = Assignment::all()->where('user_id','=',auth()->user()->id);
         return view('assignments.index')->with('assignments',$assignments);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -50,7 +40,7 @@ class AssignmentsController extends Controller
         $assignment->user_id = auth()->user()->id;
         $assignment->title = $request->input('title');
         $assignment->description = $request->input('description');
-        $assignment->deadline =  substr($request->input('deadline'), 10).now();
+        $assignment->deadline =  $request->input('deadline');
         $assignment->save();
         return redirect('/assignments')->with('success','Assignment added successfully!');
     }
@@ -77,7 +67,7 @@ class AssignmentsController extends Controller
     public function edit($id)
     {
         $assignment = Assignment::find($id);
-        $returnHTML = view('assignments.modal-body-view',['assignment'=> $assignment])->render();
+        $returnHTML = view('assignments.update-modal-form',['assignment'=> $assignment])->render();
         return response()->json( ['html' => $returnHTML]);
     }
 
@@ -94,9 +84,9 @@ class AssignmentsController extends Controller
         $assignment->user_id = auth()->user()->id;
         $assignment->title = $request->input('title');
         $assignment->description = $request->input('description');
-        $assignment->deadline =  substr($request->input('deadline'), 10).now();
+        $assignment->deadline =  $request->input('deadline');
         $assignment->save();
-        return redirect('/assignments')->with('success','Assignment updated successfully!');
+        return redirect('/assignments')->with('success2','Assignment updated successfully!');
     }
 
 }

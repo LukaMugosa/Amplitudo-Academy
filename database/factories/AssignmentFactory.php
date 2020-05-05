@@ -10,6 +10,6 @@ $factory->define(\App\Assignment::class, function (Faker $faker) {
         'user_id' => 2,
         'title' => $faker->word,
         'description' => $faker->text,
-        'deadline' => $faker->dateTime
+        'deadline' => $faker->date()
     ];
 });

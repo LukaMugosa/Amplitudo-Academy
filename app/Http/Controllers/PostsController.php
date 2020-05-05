@@ -46,7 +46,14 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->description = $request->input('description');
+        $post->body = $request->input('body');
+        $post->user_id = auth()->user()->id;
+        $post->save();
+        $id =  auth()->user()->id;
+        return redirect("/profile/$id")->with('success', 'You have successfully added a new post!');
     }
 
     /**

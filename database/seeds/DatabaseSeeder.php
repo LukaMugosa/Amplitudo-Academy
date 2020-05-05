@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AbilitiesTableSeeder::class);
         $this->call(AbilityRoleTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
-        $this->call(CommentCourseTableSeeder::class);
         $this->call(CourseUserTableSeeder::class);
         $this->call(PaymentsTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
@@ -28,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RatingsTableSeeder::class);
         $this->call(AssignmentsTableSeeder::class);
         $this->call(AssignmentUserTableSeeder::class);
+        $this->call(CommentPostTableSeeder::class);
     }
 }

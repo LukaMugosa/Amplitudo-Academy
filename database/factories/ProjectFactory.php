@@ -10,5 +10,6 @@ $factory->define(\App\Project::class, function (Faker $faker) {
         'user_id' => 2,
         'title' => $faker->word,
         'project_description' => $faker->text(300),
+        'deadline' => $faker->date(),
     ];
 });

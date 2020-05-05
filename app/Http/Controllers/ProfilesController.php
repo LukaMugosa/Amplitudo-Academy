@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
@@ -18,16 +19,11 @@ class ProfilesController extends Controller
         $profile = Profile::find($id);
         if(is_null($profile))
             return view('profiles.not_found');
-        return view('profiles.show')->with('profile',$profile);
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $posts = Post::all()->where('user_id','=', $id);
+        return view('profiles.show')->with([
+            'profile' => $profile,
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -38,7 +34,7 @@ class ProfilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
