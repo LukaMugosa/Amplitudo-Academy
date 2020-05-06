@@ -1,5 +1,14 @@
 @extends('layouts.dashboard_layout')
 
+
+@section('links')
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
+@endsection
+
 @section('content')
 {{--    Treba osmisliti da ako korisnik kojeg trazimo nema profil izbacimo grsku--}}
     <div class="content-wrapper">
@@ -170,17 +179,54 @@
                                     <div class="active tab-pane" id="timeline">
 
                                         <div class="timeline">
-                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">Add New Post</button>
+                                            <button type="button" class="btn btn-default bg-gradient-teal" data-toggle="modal" data-target="#modal-lg">Add New Post</button>
                                         </div>
+                                        @error('title')
+                                        <div class="alert alert-danger w-50" id="error1" role="alert">{{$message}}</div>
+                                        @enderror
+                                        @error('description')
+                                        <div class="alert alert-danger w-75" id="error2" role="alert">{{$message}}</div>
+                                        @enderror
+                                        @error('body')
+                                        <div class="alert alert-danger w-75" id="error3" role="alert">{{$message}}</div>
+                                        @enderror
+                                        @if(session()->has('success'))
+                                            <div class="alert alert-success w-50" id="success">
+                                                {{ session()->get('success') }}
+                                                <script>
+                                                    const success = document.getElementById("success");
+                                                    setTimeout(() => {
+                                                        success.classList.add('hide');
+                                                    },3000);
+                                                </script>
+                                            </div>
+                                        @endif
+                                        @if(session()->has('success2'))
+                                            <div class="alert alert-success w-50" id="success2">
+                                                {{ session()->get('success2') }}
+                                                <script>
+                                                    const success2 = document.getElementById("success2");
+                                                    setTimeout(() => {
+                                                        success2.classList.add('hide');
+                                                    },3000);
+                                                </script>
+                                            </div>
+                                        @endif
+
                                         <div class="posts">
                                             @foreach($posts as $post)
-                                                <div class="timeline-item">
-                                                    <span class="time"><i class="far fa-clock"></i> {{$post->created_at}}</span>
+                                                <div class="timeline-item timeline-inverse mb-3 card p-5 bg-gradient-teal">
+                                                    <span class="badge badge-pill badge-light w-25 mb-2 p-2 text-md-left"><i class="far fa-clock"></i>{{$post->created_at}}</span>
                                                     <h3 class="timeline-header">{{$post->title}}</h3>
                                                     <div class="timeline-body mb-3">{{$post->description}}</div>
                                                     <div class="timeline-footer">
-                                                        <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                                        <a href="{{url("/posts/$post->id")}}" class="btn btn-primary">Read more</a>
+                                                        @if(auth()->user()->id === $post->user_id)
+                                                            {!! Form::open(['action' => ['PostsController@destroy',$post->id],'method' => 'POST' , 'class' => 'mt-0' , 'style' => 'display:inline-block;']) !!}
+                                                            {{Form::hidden('_method','DELETE')}}
+                                                            {{ Form::button('Delete <i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )  }}
+                                                            {!! Form::close() !!}
+                                                        @endif
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -258,4 +304,19 @@
         </section>
         <!-- /.content -->
     </div>
+@endsection
+@section('additional-scripts')
+    <script>
+        const error1 = document.getElementById('error1');
+        const error2 = document.getElementById('error2');
+        const error3 = document.getElementById('error3');
+        setTimeout(() => {
+            if(error1)
+                error1.classList.add('hide');
+            if(error2)
+                error2.classList.add('hide');
+            if(error3)
+                error3.classList.add('hide');
+        },3500);
+    </script>
 @endsection

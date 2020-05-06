@@ -19,7 +19,7 @@ class ProfilesController extends Controller
         $profile = Profile::find($id);
         if(is_null($profile))
             return view('profiles.not_found');
-        $posts = Post::all()->where('user_id','=', $id);
+        $posts = Post::all()->where('user_id','=', $id)->sortByDesc('updated_at');
         return view('profiles.show')->with([
             'profile' => $profile,
             'posts' => $posts

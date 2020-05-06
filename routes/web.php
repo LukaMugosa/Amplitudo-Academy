@@ -34,6 +34,7 @@ Route::resource('/course','CoursesController');
 Route::resource('/assignments','AssignmentsController');
 Route::get('/profile/{id}','ProfilesController@show');
 Route::resource('posts', 'PostsController');
+Route::get('/posts/edit/{id}', 'PostsController@edit');
 Route::resource('/projects','ProjectsController');
 Route::get('/projects/edit/{id}','ProjectsController@edit');
 //Route::get('/profile', 'ProfilesController@index')->name('profile');
