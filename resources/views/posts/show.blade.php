@@ -86,14 +86,50 @@
         </div>
         <div class="comments">
             <h3>Comments:</h3>
-            @foreach($post->comments as $comment)
-               <div class="comment-container">
+            @if(Auth::check())
+                {!! Form::open(['action' => 'CommentsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                <div class="add-comment">
+                    <div class="add-comment-input">
+                        {{Form::text('body', '', ['class' => 'input-field', 'placeholder' => 'Feel free to leave your comment..'])}}
+                    </div>
+                    {{Form::number('post_id',$post->id,['hidden'])}}
+                    {{Form::submit('Submit',['class' => 'btn btn-primary'])}}
+                </div>
+                {!! Form::close() !!}
+            @endif
+            @error('body')
+                <div class="alert alert-danger" id="comment-error" role="alert">{{$message}}</div>
+            @enderror
+            <script>
+                const commentError = document.getElementById('comment-error');
+                setTimeout(() => {
+                    if(commentError)
+                        commentError.classList.add('hide');
+                },3500);
+            </script>
+            @foreach($post->comments->sortByDesc('updated_at') as $comment)
+                <span class="badge badge-pill badge-light ml-4 mb-2 p-2 text-md-left" style="width: 150px"><i class="far fa-clock"></i> {{$comment->created_at}}</span>
+                <div class="comment-container">
                    <div class="profile-picture">
                        <img id="profile-pic" src="{{asset('images/profile-image.jpg')}}" alt="">
                    </div>
                    <div class="comment-content">
+                       @if(Auth::check())
+                            <a href="{{url("/profile/{$comment->user->id}")}}"><h5 class="mb-0 p-2 text-sm">{{$comment->user->name}}</h5></a>
+                       @endif
+                       @guest()
+                               <h5 class="mb-0 p-2 text-sm">{{$comment->user->name}}</h5>
+                       @endguest
                        <p>{{$comment->body}}</p>
+                           @if(Auth::check())
+                               @if(auth()->user()->id === $comment->user->id)
+                                   {!! Form::open(['action' => ['CommentsController@destroy',$comment->id],'method' => 'POST' , 'class' => 'mt-0' , 'style' => 'display:inline-block;']) !!}
+                                   {{Form::hidden('_method','DELETE')}}
+                                   {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm mr-3 p-0', 'style' => 'width:40px;height:40px',] )  }}
+                               @endif
+                           @endif
                    </div>
+
                </div>
             @endforeach
         </div>

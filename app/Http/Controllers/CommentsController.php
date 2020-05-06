@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
+use App\Http\Requests\CommentsRequest;
+use App\Post;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -17,37 +20,22 @@ class CommentsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CommentsRequest $request)
     {
-        //
+        $comment = new Comment();
+        $comment->user_id = auth()->user()->id;
+        $comment->body = $request->input('body');
+        $post_id = $request->get('post_id');
+        $post = Post::findOrFail($post_id);
+        $comment->save();
+        $post->comments()->attach($comment->id);
+        return back();
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -75,10 +63,12 @@ class CommentsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $comment->delete();
+        return back();
     }
 }

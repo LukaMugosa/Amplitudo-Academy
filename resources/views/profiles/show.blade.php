@@ -177,10 +177,11 @@
                                 <div class="tab-content">
 
                                     <div class="active tab-pane" id="timeline">
-
-                                        <div class="timeline">
-                                            <button type="button" class="btn btn-default bg-gradient-teal" data-toggle="modal" data-target="#modal-lg">Add New Post</button>
-                                        </div>
+                                        @if(auth()->user()->id === $profile->id)
+                                            <div class="timeline">
+                                                <button type="button" class="btn btn-default bg-gradient-teal" data-toggle="modal" data-target="#modal-lg">Add New Post</button>
+                                            </div>
+                                        @endif
                                         @error('title')
                                         <div class="alert alert-danger w-50" id="error1" role="alert">{{$message}}</div>
                                         @enderror
