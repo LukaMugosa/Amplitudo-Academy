@@ -31,8 +31,8 @@
             </div>
         </div>
     </div>
-    <div class="course-description">
-        <h3>What will you learn in this course</h3>
+    <div class="course-description mt-3">
+        <h3 class="mb-4">What will you learn in this course</h3>
         <div class="description">
             <?php echo $course->description ?>
         </div>

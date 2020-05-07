@@ -84,7 +84,7 @@
             <small>By: {{$post->user->name}} | Created at: {{$post->created_at}}</small>
             <p><?php echo $post->body ?></p>
         </div>
-        <div class="comments">
+        <div class="comments" id="comments">
             <h3>Comments:</h3>
             @if(Auth::check())
                 {!! Form::open(['action' => 'CommentsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}

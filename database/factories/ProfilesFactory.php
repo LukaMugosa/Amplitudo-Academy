@@ -2,15 +2,20 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
+use App\Profile;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(Profile::class, function (Faker $faker) {
           return [
-              'id' => $faker->randomNumber(4),
+              'id' => $faker->unique()->numberBetween(5,55),
               'description' => $faker->text(60),
+              'education' => $faker->text(30),
+              'experience' => $faker->paragraph,
+              'address' => $faker->address,
               'phone_number' => $faker->phoneNumber,
-              'github_profile_link	' => "https://www.fakelink.com",
-              'linkedin_profile_link	' => "https://www.fakelink.com",
+              'github_profile_link' => $faker->url,
+              'instagram_profile_link' => $faker->url,
+              'linkedin_profile_link' => $faker->url,
+              'skills' => $faker->text(15)
           ];
 });

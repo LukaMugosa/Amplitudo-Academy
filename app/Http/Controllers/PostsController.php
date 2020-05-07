@@ -88,15 +88,15 @@ class PostsController extends Controller
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
         $post->save();
-        $id =  auth()->user()->id;
         return redirect("/posts/$id")->with('success', 'You have successfully updated your post!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param \App\Post $post
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy(Post $post)
     {

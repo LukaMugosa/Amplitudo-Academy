@@ -20,10 +20,12 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('role_id')->default(5);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('supervisor_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('role_id')->on('roles')->references('id')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('supervisor_id')->on('users')->references('id')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 

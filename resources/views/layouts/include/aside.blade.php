@@ -158,7 +158,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('my-mentors')}}" class="nav-link">
                             <i class="fas fa-chalkboard-teacher nav-icon"></i>
                             <p>My Mentors</p>
                         </a>

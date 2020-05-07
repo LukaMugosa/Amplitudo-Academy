@@ -31,10 +31,12 @@
                         <a href="/profile/{{$user->id}}" class="btn btn-success btn-group-sm">
                             <i class="fas fa-eye"></i>
                         </a>
-                        {!! Form::open(['action' => ['UsersController@destroy',$user->id],'method' => 'POST' , 'class' => 'mt-0' , 'style' => 'display:inline-block;']) !!}
-                        {{Form::hidden('_method','DELETE')}}
-                        {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-group-sm'] )  }}
-                        {!! Form::close() !!}
+                        @if(auth()->user()->isAdmin())
+                            {!! Form::open(['action' => ['UsersController@destroy',$user->id],'method' => 'POST' , 'class' => 'mt-0' , 'style' => 'display:inline-block;']) !!}
+                            {{Form::hidden('_method','DELETE')}}
+                            {{ Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-group-sm'] )  }}
+                            {!! Form::close() !!}
+                        @endif
                     </td>
                 </tr>
             @endforeach

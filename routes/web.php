@@ -35,6 +35,7 @@ Route::get('/', 'DashboardController@index')->name('dashboard')->middleware('aut
 Route::resource('/course','CoursesController');
 Route::resource('/assignments','AssignmentsController');
 Route::get('/profile/{id}','ProfilesController@show');
+Route::post('/profile/{id}','ProfilesController@update');
 Route::resource('posts', 'PostsController');
 Route::get('/posts/edit/{id}', 'PostsController@edit');
 Route::resource('/projects','ProjectsController');
@@ -42,5 +43,6 @@ Route::get('/projects/edit/{id}','ProjectsController@edit');
 //Route::get('/profile', 'ProfilesController@index')->name('profile');
 Route::get('assignments/edit/{id}','AssignmentsController@edit');
 Route::resource('/users', 'UsersController');
+Route::get('/my-mentors','MentorsSupervisorsController@index')->name('my-mentors');
 
 //Route::get('/edit_blog',function (){return "cao admine!";})->middleware('can:edit_blog')->name('edit_blog');

@@ -67,6 +67,10 @@
                                             <b>XP</b> <a class="float-right">0 points</a>
                                         </li>
                                     @endif
+                                    @if($profile->user->isMentor())
+                                        <span class="bg-gradient-warning rounded p-2 text-bold">Experience</span> <br>
+                                        <li class="list-group-item">{{$profile->experience}}</li>
+                                    @endif
                                 </ul>
                             </div>
                             <!-- /.card-body -->
@@ -82,7 +86,7 @@
                             <div class="card-body">
                                 <strong><i class="fas fa-book mr-1"></i> Education</strong>
                                 <p class="text-muted">
-                                    B.S. in Computer Science from the University of Tennessee at Knoxville
+                                  {{$profile->education}}
                                 </p>
 
                                 <hr>
@@ -90,8 +94,6 @@
                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
                                 <p class="text-muted">{{$profile->address}}</p>
-
-                                <hr>
 
                                 <hr>
 
@@ -104,11 +106,7 @@
                                 <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
 
                                 <p class="text-muted">
-                                    <span class="tag tag-danger">UI Design</span>
-                                    <span class="tag tag-success">Coding</span>
-                                    <span class="tag tag-info">Javascript</span>
-                                    <span class="tag tag-warning">PHP</span>
-                                    <span class="tag tag-primary">Node.js</span>
+                                    <span class="tag tag-danger">{{$profile->skills}}</span>
                                 </p>
 
                                 <hr>
@@ -243,52 +241,79 @@
                                     </div>
                                     @if(auth()->user()->id === $profile->id)
                                         <div class="tab-pane" id="settings">
-                                            <form class="form-horizontal">
+                                            {!! Form::open(['action' => ['ProfilesController@update',$profile->id], 'class' => 'form-horizontal', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                                                 <div class="form-group row">
-                                                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                                    {{Form::label('name', 'Full Name', ['class' => "col-sm-2 col-form-label"])}}
                                                     <div class="col-sm-10">
-                                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                                        {{Form::text('name', $profile->user->name, ['class' => 'form-control ', 'placeholder' => 'Enter Full Name'])}}
+                                                        @error('name')
+                                                            <div class="alert alert-danger" id="error_1">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                                    {{Form::label('description_2', 'Description', ['class' => "col-sm-2 col-form-label"])}}
                                                     <div class="col-sm-10">
-                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                        {{Form::textarea('description_2', $profile->description, ['class' => 'form-control ', 'placeholder' => 'Enter some stuff about you..'])}}
+                                                        @error('description')
+                                                            <div class="alert alert-danger" id="error_2">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+                                                    {{Form::label('education', 'Education', ['class' => "col-sm-2 col-form-label"])}}
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                                                        {{Form::textarea('education', $profile->education, ['class' => 'form-control ', 'placeholder' => 'Enter information about your education'])}}
+                                                        @error('education')
+                                                            <div class="alert alert-danger" id="error_3">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                                                    <div class="col-sm-10">
-                                                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="offset-sm-2 col-sm-10">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                                            </label>
+                                                @if($profile->user->isMentor())
+                                                    <div class="form-group row">
+                                                        {{Form::label('experience', 'Experience', ['class' => "col-sm-2 col-form-label"])}}
+                                                        <div class="col-sm-10">
+                                                            {{Form::textarea('experience', $profile->experience, ['class' => 'form-control ', 'placeholder' => 'Enter experience'])}}
+                                                            @error('experience')
+                                                                <div class="alert alert-danger" id="error_4">{{ $message }}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
+                                                @endif
+                                                <div class="form-group row">
+                                                    {{Form::label('address', 'Address', ['class' => "col-sm-2 col-form-label"])}}
+                                                    <div class="col-sm-10">
+                                                        {{Form::text('address', $profile->address, ['class' => 'form-control ', 'placeholder' => 'Enter Address'])}}
+                                                        @error('address')
+                                                            <div class="alert alert-danger" id="error_5">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    {{Form::label('phone_number', 'Phone number', ['class' => "col-sm-2 col-form-label"])}}
+                                                    <div class="col-sm-10">
+                                                        {{Form::text('phone_number', $profile->phone_number, ['class' => 'form-control ', 'placeholder' => '+382xxxx69'])}}
+                                                        @error('phone_number')
+                                                            <div class="alert alert-danger" id="error_6">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    {{Form::label('skills', 'Skills', ['class' => "col-sm-2 col-form-label"])}}
+                                                    <div class="col-sm-10">
+                                                        {{Form::text('skills', $profile->skills, ['class' => 'form-control ', 'placeholder' => 'Enter skills'])}}
+                                                        @error('skills')
+                                                            <div class="alert alert-danger" id="error_7">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="offset-sm-2 col-sm-10">
-                                                        <button type="submit" class="btn btn-danger">Submit</button>
+                                                        {{Form::submit('Submit',['class' => 'btn btn-primary'])}}
                                                     </div>
                                                 </div>
-                                            </form>
+                                            {!! Form::close() !!}
+
                                         </div>
                                     <!-- /.tab-pane -->
                                     @endif
@@ -318,6 +343,31 @@
                 error2.classList.add('hide');
             if(error3)
                 error3.classList.add('hide');
+        },3500);
+    </script>
+    <script>
+        const error_1 = document.getElementById('error_1');
+        const error_2 = document.getElementById('error_2');
+        const error_3 = document.getElementById('error_3');
+        const error_4 = document.getElementById('error_4');
+        const error_5 = document.getElementById('error_5');
+        const error_6 = document.getElementById('error_6');
+        const error_7 = document.getElementById('error_7');
+        setTimeout(() => {
+            if(error_1)
+                error_1.classList.add('hide');
+            if(error_2)
+                error_2.classList.add('hide');
+            if(error_3)
+                error_3.classList.add('hide');
+            if(error_4)
+                error_4.classList.add('hide');
+            if(error_5)
+                error_5.classList.add('hide');
+            if(error_6)
+                error_6.classList.add('hide');
+            if(error_7)
+                error_7.classList.add('hide');
         },3500);
     </script>
 @endsection

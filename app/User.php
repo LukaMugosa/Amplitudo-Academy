@@ -38,6 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     public function role(){
         return $this->belongsTo('App\Role');
     }
@@ -111,11 +112,29 @@ class User extends Authenticatable
         }
         return $mentors;
     }
+    public static function getAllMentorsForSupervisors(){
+        $mentors = [];
+        $users = User::all();
+        foreach ($users as $user){
+            if($user->isMentor() && $user->supervisor_id===auth()->user()->id)
+                array_push($mentors, $user);
+        }
+        return $mentors;
+    }
     public static function getAllStudents(){
         $students = [];
         $users = User::all();
         foreach ($users as $user){
             if($user->isStudent())
+                array_push($students, $user);
+        }
+        return $students;
+    }
+    public static function getAllStudentsForSupervisor(){
+        $students = [];
+        $users = User::all();
+        foreach ($users as $user){
+            if($user->isStudent() && $user->supervisor_id===auth()->user()->id)
                 array_push($students, $user);
         }
         return $students;

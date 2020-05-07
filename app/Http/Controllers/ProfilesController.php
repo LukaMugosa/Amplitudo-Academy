@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfilesRequest;
 use App\Post;
 use App\Profile;
 use App\User;
@@ -58,9 +59,20 @@ class ProfilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProfilesRequest $request, $id)
     {
-        //
+        $profile = Profile::find($id);
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->save();
+        $profile->description = $request->input('description_2');
+        $profile->education = $request->input('education');
+        $profile->experience = $request->input('experience');
+        $profile->address = $request->input('address');
+        $profile->phone_number = $request->input('phone_number');
+        $profile->skills = $request->input('skills');
+        $profile->save();
+        return back();
     }
 
     /**
