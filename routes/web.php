@@ -44,5 +44,6 @@ Route::get('/projects/edit/{id}','ProjectsController@edit');
 Route::get('assignments/edit/{id}','AssignmentsController@edit');
 Route::resource('/users', 'UsersController');
 Route::get('/my-mentors','MentorsSupervisorsController@index')->name('my-mentors');
-
+Route::resource('reports','ReportsController');
+Route::get('/reports/edit/{id}','ReportsController@edit');
 //Route::get('/edit_blog',function (){return "cao admine!";})->middleware('can:edit_blog')->name('edit_blog');

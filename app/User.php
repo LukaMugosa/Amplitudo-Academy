@@ -139,6 +139,15 @@ class User extends Authenticatable
         }
         return $students;
     }
+    public static function retriveMyUsers(){
+        $myusersIDs = [];
+        $users = User::all();
+        foreach ($users as $user){
+            if($user->supervisor_id===auth()->user()->id)
+                array_push($myusersIDs, $user->id);
+        }
+        return $myusersIDs;
+    }
     public static function getAllSupervisors(){
         $supervisors = [];
         $users = User::all();

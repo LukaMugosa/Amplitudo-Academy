@@ -19,7 +19,7 @@
                     @error('title')
                     <div class="alert alert-danger w-50" id="error1" role="alert">{{$message}}</div>
                     @enderror
-                    @error('description')
+                    @error('project_description')
                     <div class="alert alert-danger w-75" id="error2" role="alert">{{$message}}</div>
                     @enderror
                     @if(session()->has('success'))

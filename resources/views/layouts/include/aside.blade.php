@@ -164,19 +164,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{url('/projects')}}" class="nav-link">
                             <i class="fas fa-tasks nav-icon"></i>
                             <p>All Projects</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-plus-square nav-icon"></i>
-                            <p>Make Report</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{url('/reports')}}" class="nav-link">
                             <i class="fas fa-atlas nav-icon"></i>
                             <p>View Reports</p>
                         </a>
