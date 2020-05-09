@@ -10,10 +10,6 @@ use Illuminate\Http\Request;
 class CoursesController extends Controller
 {
 
-//    public function __construct()
-//    {
-//        $this->middleware('can:view_my_courses');
-//    }
 
     /**
      * Display a listing of the resource.

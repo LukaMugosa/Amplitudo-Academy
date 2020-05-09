@@ -24,7 +24,7 @@ class ProfilesRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'required|min:150|max:1000',
+            'description_2' => 'required|min:150|max:1000',
             'education' => 'min:20|max:200',
             'experience' => 'min:50|max:400',
             'address' => 'required|regex:/(.+), (\w+), (\w+) (\w+)/|min:10|max:150',

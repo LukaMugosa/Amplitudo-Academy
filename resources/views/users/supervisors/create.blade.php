@@ -14,7 +14,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            @if(isset($success))
+                            @if(session()->has('success'))
                                 <div class="alert alert-dark">{{$success}} </div>
                             @endif
                             {!! Form::open(['action' => 'SupervisorsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}

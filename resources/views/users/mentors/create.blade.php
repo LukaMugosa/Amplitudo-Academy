@@ -14,8 +14,8 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        @if(isset($success))
-                            <div class="alert alert-dark">{{$success}} </div>
+                        @if(session()->has('success'))
+                            <div class="alert alert-success">{{$success}} </div>
                         @endif
                         {!! Form::open(['action' => 'MentorsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                             <div class="card-body">
@@ -30,6 +30,13 @@
                                     {{Form::label('exampleInputEmail1', 'Email')}}
                                     {{Form::email('email', '', ['class' => 'form-control', 'id' => 'exampleInputEmail1', 'placeholder' => 'Enter email'])}}
                                     @error('email')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('users', 'Select Supervisor')}}
+                                    {{Form::select('supervisor_id', $usersList, null, ['class' => 'form-control','placeholder' => 'Please select'])}}
+                                    @error('supervisor_id')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

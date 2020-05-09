@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Assignment extends Model
 {
@@ -10,6 +11,10 @@ class Assignment extends Model
         return $this->belongsTo('App\User');
     }
     public function users(){
-        return $this->belongsToMany('App\User')->withTimestamps();
+        return $this->belongsToMany('App\User')->withPivot('is_done')->withTimestamps();
+    }
+    public static function getAllUndoneHomework(){
+        $id = auth()->user()->id;
+        return DB::select("SELECT * FROM assignment_user WHERE user_id={$id} AND is_done=0");
     }
 }

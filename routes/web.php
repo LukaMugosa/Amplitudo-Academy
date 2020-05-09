@@ -21,7 +21,11 @@ Auth::routes();
 
 Route::get('/home','PagesController@index')->name('home');
 Route::get('/my-courses','MentorsCoursesController@index')->name('my-courses');
+Route::get('/mycourses','CoursesStudentController@index')->name('mycourses');
+Route::get('/mymentors','MentorsStudentController@index')->name('mymentors');
+Route::get('/homework','HomeworkStudentController@index')->name('homework');
 Route::resource('/courses','CoursesController');
+Route::post('/courses/store','CoursesController@store')->middleware('can:add_courses');
 Route::post('/comments/store','CommentsController@store');
 Route::delete('/comments/{id}','CommentsController@destroy');
 Route::get('/about','PagesController@about')->name('about');

@@ -76,7 +76,7 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Course')->withTimestamps();
     }
     public function course(){
-        return $this->hasMany('App\Course');
+        return $this->hasMany('App\Course','mentor_id');
     }
     public function comments(){
         return $this->hasMany('App\Comment');
@@ -163,5 +163,17 @@ class User extends Authenticatable
     public function projects(){
         return $this->belongsToMany('App\Project')->withTimestamps();
     }
-
+    public static function getAllMentorsForStudents(){
+        $mentors = User::all()->where('role_id','=','2');
+        $usersCourses = auth()->user()->courses;
+//        dd($usersCourses);
+        $usersMentors = [];
+        foreach ($mentors as $mentor){
+            foreach ($usersCourses as $course){
+                if($mentor->id === $course->mentor_id)
+                    array_push($usersMentors,$mentor);
+            }
+        }
+        return $usersMentors;
+    }
 }

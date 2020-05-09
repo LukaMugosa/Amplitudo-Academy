@@ -77,5 +77,11 @@ class AbilitiesTableSeeder extends Seeder
         \App\Ability::create([
             'name' => 'view_ratings'
         ]);
+        \App\Ability::create([
+            'name' => 'add_courses'
+        ]);
+        \App\Ability::create([
+            'name' => 'download_content'
+        ]);
     }
 }

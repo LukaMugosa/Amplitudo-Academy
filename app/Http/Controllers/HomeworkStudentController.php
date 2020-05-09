@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Assignment;
+use App\AssignmentUser;
 use Illuminate\Http\Request;
 
-class CoursesStudentController extends Controller
+class HomeworkStudentController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:view_my_courses');
         $this->middleware('can:do_homeworks');
+        $this->middleware('can:view_homeworks');
     }
 
     /**
@@ -22,9 +22,14 @@ class CoursesStudentController extends Controller
      */
     public function index()
     {
-        $user = User::findOrFail(auth()->user()->id);
-        $courses = $user->courses;
-        return view('users.students.mycourses')->with('courses',$courses);
+        $assignmentsToBeDone = Assignment::getAllUndoneHomework();
+        $assignments = [];
+        foreach ($assignmentsToBeDone as $assign){
+            $a = Assignment::find($assign->assignment_id);
+            array_push($assignments,$a);
+        }
+//        $assignments = AssignmentUser::all()->where('user_id','=',auth()->user()->id);
+        return view('users.students.homework.myhomework')->with('assignments',$assignments);
     }
 
     /**

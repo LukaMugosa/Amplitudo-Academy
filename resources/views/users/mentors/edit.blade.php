@@ -31,6 +31,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    {{Form::label('users', 'Select Supervisor')}}
+                                    {{Form::select('supervisor_id', $usersList, $user->supervisor_id, ['class' => 'form-control '])}}
+                                </div>
+                                <div class="form-group">
                                     {{Form::label('exampleInputPassword1', 'Password')}}
                                     {{Form::password('password1', ['class' => 'form-control', 'id' => 'exampleInputPassword1', 'placeholder' => 'Enter New Password'])}}
                                     @error('password1')

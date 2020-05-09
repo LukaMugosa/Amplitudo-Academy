@@ -255,7 +255,7 @@
                                                     {{Form::label('description_2', 'Description', ['class' => "col-sm-2 col-form-label"])}}
                                                     <div class="col-sm-10">
                                                         {{Form::textarea('description_2', $profile->description, ['class' => 'form-control ', 'placeholder' => 'Enter some stuff about you..'])}}
-                                                        @error('description')
+                                                        @error('description_2')
                                                             <div class="alert alert-danger" id="error_2">{{ $message }}</div>
                                                         @enderror
                                                     </div>
@@ -368,6 +368,6 @@
                 error_6.classList.add('hide');
             if(error_7)
                 error_7.classList.add('hide');
-        },3500);
+        },5000);
     </script>
 @endsection

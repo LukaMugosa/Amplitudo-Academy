@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MentorSupervisorRequest;
+use App\Http\Requests\MentorRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -32,24 +32,26 @@ class MentorsController extends Controller
      */
     public function create()
     {
-        return view('users.mentors.create');
+        $usersList = User::all()->where('role_id','=','4')->pluck('name','id');
+        return view('users.mentors.create')->with('usersList',$usersList);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(MentorSupervisorRequest $request)
+    public function store(MentorRequest $request)
     {
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password1'));
         $user->role_id = '2';
+        $user->supervisor_id = $request->get('supervisor_id');
         $user->save();
-        return view('users.mentors.create')->with('success', 'Mentor added successfully');
+        return redirect('/mentors/create')->with('success', 'Mentor added successfully');
     }
 
     /**
@@ -61,7 +63,11 @@ class MentorsController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('users.mentors.edit')->with('user',$user);
+        $usersList = User::all()->where('role_id','=','4')->pluck('name','id');
+        return view('users.mentors.edit')->with([
+            'user' => $user,
+            'userList' => $usersList
+        ]);
     }
 
     /**

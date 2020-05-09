@@ -116,22 +116,22 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="fas fa-certificate nav-icon"></i>
-                            <p>Badges</p> <!-- dodati tamo modal za kreiranje domaceg? -->
+                            <p>Badges</p>
                         </a>
                     </li><li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{url('/mycourses')}}" class="nav-link">
                             <i class="fas fa-book nav-icon"></i>
                             <p>My Courses</p> <!-- dodati tamo modal za kreiranje domaceg? -->
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#"class="nav-link">
+                        <a href="{{url('/mymentors')}}"class="nav-link">
                             <i class="fas fa-user-graduate nav-icon"></i>
                             <p>My Mentors</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('homework')}}" class="nav-link">
                             <i class="fas fa-school nav-icon"></i>
                             <p>Homework</p> <!-- dodati tamo modal za kreiranje domaceg? -->
                         </a>
@@ -143,7 +143,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{url('/courses')}}" class="nav-link">
                             <i class="fas fa-globe nav-icon"></i>
                             <p>All Courses</p> <!-- dodati tamo modal za kreiranje domaceg? -->
                         </a>

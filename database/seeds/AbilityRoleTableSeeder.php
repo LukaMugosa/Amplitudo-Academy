@@ -34,6 +34,7 @@ class AbilityRoleTableSeeder extends Seeder
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'view_my_courses'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'comment_posts'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'like_posts'));
+            $role->allowTo(App\Ability::all()->where('name' ,'=', 'add_courses'));
         });
         App\Role::all()->where('id','=', 3)->each(function ($role){
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'view_my_courses'));
@@ -46,6 +47,7 @@ class AbilityRoleTableSeeder extends Seeder
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'evaluate_mentors'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'comment_posts'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'like_posts'));
+            $role->allowTo(App\Ability::all()->where('name' ,'=', 'download_content'));
         });
         App\Role::all()->where('id','=', 4)->each(function ($role){
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'view_students'));
