@@ -29,5 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AssignmentUserTableSeeder::class);
         $this->call(CommentPostTableSeeder::class);
         $this->call(UpdateUsersSeeder::class);
+        $this->call(BadgesTableSeeder::class);
+        $this->call(BadgeUserTableSeeder::class);
     }
 }

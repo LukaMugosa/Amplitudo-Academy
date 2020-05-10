@@ -10,7 +10,7 @@
     <div class="col-md-6 ml-auto mr-auto">
         <div class="card">
             <div class="card-header bg-danger mb-2">
-                <h3 class="card-title">Homework to be done</h3>
+                <h3 class="card-title">Projects to be done</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-4">
@@ -26,23 +26,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($assignments as $assignment)
+                    @foreach($projects as $project)
                         <tr>
-                            <td>{{$assignment->id}}.</td>
-                            <td>{{$assignment->title}}</td>
-                            <td>{{$assignment->deadline}}</td>
-                            <td><span class="badge badge-info">{{($assignment->deadline >= now()) ? 'In progress' : 'Expired'}}</span></td>
-                            <td><span class="badge badge-info">NO</span></td>
+                            <td>{{$project->id}}.</td>
+                            <td>{{$project->title}}</td>
+                            <td>{{$project->deadline}}</td>
+                            <td><span class="badge badge-info">{{($project->deadline >= now()) ? 'In progress' : 'Expired'}}</span></td>
+                            <td><span class="badge badge-info">No</span></td>
                             <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target-id="{{$assignment->id}}" data-target="#myModal"><i class="fas fa-eye"></i></button>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target-id="{{$assignment->id}}" data-target="#modal-default-3"><i class="fas fa-upload"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target-id="{{$project->id}}" data-target="#myModal"><i class="fas fa-eye"></i></button>
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target-id="{{$project->id}}" data-target="#modal-default-3"><i class="fas fa-upload"></i></button>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             </div>
+            <!-- /.card-body -->
         </div>
+        <!-- /.card -->
+
 
         <div class="modal fade" id="modal-default-3" tabindex="-2" role="dialog" aria-labelledby="myModalLabel2">
             <div class="modal-dialog" role="document">
@@ -53,22 +56,12 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body-3">
-                        {!! Form::open(['action' => 'HomeworkStudentController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                        <div class="card-body">
-                            <div class="form-group">
-                                {{Form::label('inputDeadline', 'Please upload your .zip or .rar file')}}
-                                {{Form::file('homework')}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        {{Form::submit('Submit',['class' => 'btn btn-success'])}}
-                        {!! Form::close() !!}
-                    </div>
+                    <div class="modal-body-3"></div>
+
                 </div>
+                <!-- /.modal-content -->
             </div>
+            <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -82,6 +75,42 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modal-lg">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Large Modal</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body-2">
+                        {!! Form::open(['action' => 'AssignmentsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                        <div class="card-body">
+                            <div class="form-group">
+                                {{Form::label('title', 'Title')}}
+                                {{Form::text('title', '', ['class' => 'form-control ', 'placeholder' => 'Enter Full Title Name','id' => 'exampleInputName'])}}
+                            </div>
+                            <div class="form-group">
+                                {{Form::label('exampleInputEmail1', 'Description')}}
+                                {{Form::textarea('description', '', ['class' => 'form-control', 'id' => 'exampleInputEmail1', 'placeholder' => 'Enter assignment description'])}}
+                            </div>
+                            <div class="form-group">
+                                {{Form::label('inputDeadline', 'Dead line')}}
+                                {{Form::date('deadline', \Carbon\Carbon::now())}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        {{Form::submit('Submit',['class' => 'btn btn-success'])}}
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
         <!-- /.card -->
     </div>
 @endsection
@@ -93,6 +122,16 @@
                 $.get( "/assignments/" + id, function( data ) {
                     $(".modal-body").html(data.html);
                 });
+
+            });
+        });
+        $(document).ready(function(){
+            $("#modal-default-3").on("show.bs.modal", function(e) {
+                var id = $(e.relatedTarget).data('target-id');
+                $.get( "/assignments/edit/" + id, function( data ) {
+                    $(".modal-body-3").html(data.html);
+                });
+
             });
         });
     </script>

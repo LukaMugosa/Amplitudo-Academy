@@ -17,6 +17,7 @@ class CreateProjectUserTable extends Migration
             $table->primary(['user_id','project_id']);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
+            $table->boolean('is_done')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

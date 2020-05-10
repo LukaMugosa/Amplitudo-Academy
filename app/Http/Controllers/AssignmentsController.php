@@ -12,8 +12,8 @@ class AssignmentsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:assign_homework');
-        $this->middleware('can:evaluate_homework');
+//        $this->middleware('can:assign_homework');
+//        $this->middleware('can:evaluate_homework');
         $this->middleware('can:view_homeworks');
     }
 

@@ -19,7 +19,9 @@
                     <div class="col-sm-6">
                         <h1>Profile</h1>
                         @if(auth()->user()->isAdmin())
-                            <a href="/{{strtolower(substr($profile->user->role->name,5))}}s/edit/{{$profile->user->id}}" class="btn btn-success mt-0">Edit User</a>
+                            @if($profile->user->isMentor() || $profile->user->isSupervisor())
+                                <a href="/{{strtolower(substr($profile->user->role->name,5))}}s/edit/{{$profile->user->id}}" class="btn btn-success mt-0">Edit User</a>
+                            @endif
                             {!! Form::open(['action' => ['UsersController@destroy',$profile->user->id],'method' => 'POST' , 'class' => 'mt-0' , 'style' => 'display:inline-block;']) !!}
                                 {{Form::hidden('_method','DELETE')}}
                                 {{ Form::submit('Delete User', ['class' => 'btn btn-danger']) }}
@@ -127,6 +129,10 @@
                                 <ul class="nav nav-pills">
                                     <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Timeline</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Social Media </a></li>
+                                    @if($profile->user->isStudent())
+                                        <li class="nav-item"><a class="nav-link" href="#homework" data-toggle="tab">Homework</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#projects" data-toggle="tab">Projects</a></li>
+                                    @endif
                                     @if(auth()->user()->id === $profile->id)
                                         <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                                     @endif
@@ -239,6 +245,21 @@
                                             <a href="{{$profile->linkedin_profile_link}}"><i class="fab fa-linkedin-in w-25 h-50" style="font-size: 50px"></i></a>
                                         </div>
                                     </div>
+                                    <div class="tab-pane" id="homework">
+                                        <div>
+                                            @if(auth()->user()->isMentor())
+                                                <button class="btn btn-success"><i class="fas fa-certificate"></i> Add Badge</button>
+                                            @endif
+                                            <br>
+                                            Domaci zadaci
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="projects">
+                                        <div>
+                                            Projekti
+                                        </div>
+                                    </div>
+
                                     @if(auth()->user()->id === $profile->id)
                                         <div class="tab-pane" id="settings">
                                             {!! Form::open(['action' => ['ProfilesController@update',$profile->id], 'class' => 'form-horizontal', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}

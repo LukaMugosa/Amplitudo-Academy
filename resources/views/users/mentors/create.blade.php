@@ -1,5 +1,11 @@
 @extends('layouts.dashboard_layout')
-
+@section('links')
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <section class="content w-75 ml-auto mr-auto mt-4">
@@ -15,7 +21,14 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         @if(session()->has('success'))
-                            <div class="alert alert-success">{{$success}} </div>
+                            <div class="alert alert-success" id="error1">{{session()->get('success')}} </div>
+                            <script>
+                                const error1 = document.getElementById('error1');
+                                setTimeout(() => {
+                                    if(error1)
+                                        error1.classList.add('hide');
+                                },3500);
+                            </script>
                         @endif
                         {!! Form::open(['action' => 'MentorsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                             <div class="card-body">

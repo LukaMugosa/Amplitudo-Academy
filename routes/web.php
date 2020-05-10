@@ -24,6 +24,8 @@ Route::get('/my-courses','MentorsCoursesController@index')->name('my-courses');
 Route::get('/mycourses','CoursesStudentController@index')->name('mycourses');
 Route::get('/mymentors','MentorsStudentController@index')->name('mymentors');
 Route::get('/homework','HomeworkStudentController@index')->name('homework');
+Route::post('/homework','HomeworkStudentController@store');
+Route::get('/my-projects','StudentProjectController@index')->name('my-projects');
 Route::resource('/courses','CoursesController');
 Route::post('/courses/store','CoursesController@store')->middleware('can:add_courses');
 Route::post('/comments/store','CommentsController@store');

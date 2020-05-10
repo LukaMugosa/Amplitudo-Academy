@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Assignment;
 use App\AssignmentUser;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeworkStudentController extends Controller
@@ -39,18 +40,20 @@ class HomeworkStudentController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+        $user = User::find(auth()->user->id);
+        $user->assignmentsManyToMany->pivot->is_done = 1;
+        $user->assignmentsManyToMany->pivot->file = $request->get('file');
+        return redirect('/homework')->with('success','Homework turned in successfully!');
     }
 
     /**

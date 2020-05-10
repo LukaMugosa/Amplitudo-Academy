@@ -176,4 +176,7 @@ class User extends Authenticatable
         }
         return $usersMentors;
     }
+    public function badges(){
+        return $this->belongsToMany('App\Badge')->withTimestamps();
+    }
 }

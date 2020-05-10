@@ -137,7 +137,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('my-projects')}}" class="nav-link">
                             <i class="fas fa-tasks nav-icon"></i>
                             <p>Projects</p> <!-- dodati tamo modal za kreiranje domaceg? -->
                         </a>
