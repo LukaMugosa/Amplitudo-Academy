@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->text('about_course');
             $table->mediumText('description');
             $table->double('price');
+            $table->string('courses_file_name');
             $table->timestamps();
 
             $table->foreign('mentor_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

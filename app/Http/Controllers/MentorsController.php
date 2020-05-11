@@ -66,7 +66,7 @@ class MentorsController extends Controller
         $usersList = User::all()->where('role_id','=','4')->pluck('name','id');
         return view('users.mentors.edit')->with([
             'user' => $user,
-            'userList' => $usersList
+            'usersList' => $usersList
         ]);
     }
 

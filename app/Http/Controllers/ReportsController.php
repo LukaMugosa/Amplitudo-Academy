@@ -27,11 +27,12 @@ class ReportsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        $usersList = User::all()->where('role_id', '<', 5)->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name','id');
+        return view('reports.create')->with('usersList',$usersList);
     }
 
     /**
@@ -48,7 +49,10 @@ class ReportsController extends Controller
         $report->title = $request->input('title');
         $report->body = $request->input('body');
         $report->save();
-        return redirect('/reports')->with('success','Report added successfully!');
+        if(auth()->user()->isSupervisor())
+            return redirect('/reports')->with('success','Report added successfully!');
+        else
+            return redirect('/reports/create')->with('success','Report added successfully!');
     }
 
     /**

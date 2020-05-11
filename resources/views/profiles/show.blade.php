@@ -66,7 +66,7 @@
                                             <b>Badges</b> <a class="float-right">{{count($profile->user->badges)}}</a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>XP</b> <a class="float-right"></a>
+                                            <b>XP</b><a class="float-right">{{15*$doneHomework}} points</a>
                                         </li>
                                     @endif
                                     @if($profile->user->isMentor())
@@ -255,12 +255,36 @@
                                                 <button class="btn btn-success"><i class="fas fa-certificate"></i> Add Badge</button>
                                             @endif
                                             <br>
-                                            Domaci zadaci
+                                            @if(count($showHomeworks) < 1)
+                                                <p>The user doesn't have any done projects yet!</p>
+                                            @endif
+                                            @foreach($showHomeworks as $homework)
+                                                    <div class="timeline-item timeline-inverse mb-3 card p-5 bg-info">
+                                                        <span class="badge badge-pill badge-light w-25 mb-2 p-2 text-md-left"><i class="far fa-clock"></i>{{$homework->created_at}}</span>
+                                                        <h3 class="timeline-header">{{$homework->title}}</h3>
+                                                        <a href="{{url("/download-homework/".$homework->users[0]->pivot->file_name)}}" class="btn btn-dark" style="width: 300px">Download Students Homework</a>
+                                                        @if(auth()->user()->isMentor()))
+                                                            <a href="#" class="btn btn-outline-warning mt-3" style="width: 300px">Evaluate Homework</a>
+                                                        @endif
+                                                    </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="projects">
                                         <div>
-                                            Projekti
+                                            @if(count($showProjects) < 1)
+                                                <p>The user doesn't have any done projects yet!</p>
+                                            @endif
+                                            @foreach($showProjects as $project)
+                                                <div class="timeline-item timeline-inverse mb-3 card p-5 bg-info">
+                                                    <span class="badge badge-pill badge-light w-25 mb-2 p-2 text-md-left"><i class="far fa-clock"></i>{{$project->created_at}}</span>
+                                                    <h3 class="timeline-header">{{$project->title}}</h3>
+                                                    <a href="{{url("/download-project/".$project->users[0]->pivot->file_name)}}" class="btn btn-dark" style="width: 300px">Download Students Project</a>
+                                                    @if(auth()->user()->isMentor()))
+                                                        <a href="#" class="btn btn-outline-warning mt-3" style="width: 300px">Evaluate Homework</a>
+                                                    @endif
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
 

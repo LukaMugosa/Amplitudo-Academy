@@ -12,5 +12,6 @@ $factory->define(Course::class, function (Faker $faker) {
         'about_course' => $faker->sentence,
         'description' => $faker->paragraph,
         'price' => $faker->randomNumber(3),
+        'courses_file_name' => $faker->word . '.zip'
     ];
 });

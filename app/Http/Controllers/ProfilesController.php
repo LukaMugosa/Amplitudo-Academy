@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Assignment;
 use App\Http\Requests\ProfilesRequest;
 use App\Post;
 use App\Profile;
+use App\Project;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfilesController extends Controller
 {
@@ -17,13 +20,30 @@ class ProfilesController extends Controller
      */
     public function show($id){
 
-        $profile = Profile::find($id);
+        $profile = Profile::findOrFail($id);
         if(is_null($profile))
             return view('profiles.not_found');
+        $homeworks = DB::select("SELECT * FROM assignment_user WHERE user_id=$id AND is_done=1 ORDER BY updated_at");
+        $doneHomework =count($homeworks);
+        $showHomeworks = [];
+        foreach ($homeworks as $homework){
+            $assignment = Assignment::find($homework->assignment_id);
+            $showHomeworks[] = $assignment;
+        }
+        $projects = DB::select("SELECT * FROM project_user WHERE user_id=$id AND is_done=1 ORDER BY updated_at");
+        $showProjects = [];
+        foreach ($projects as $project){
+            $project = Project::find($project->project_id);
+            $showProjects[] = $project;
+        }
+
         $posts = Post::all()->where('user_id','=', $id)->sortByDesc('updated_at');
         return view('profiles.show')->with([
             'profile' => $profile,
-            'posts' => $posts
+            'posts' => $posts,
+            'doneHomework' => $doneHomework,
+            'showHomeworks' => $showHomeworks,
+            'showProjects' => $showProjects,
         ]);
     }
 

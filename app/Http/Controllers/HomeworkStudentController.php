@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Assignment;
 use App\AssignmentUser;
+use App\Http\Requests\HomeworkRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -53,10 +54,10 @@ class HomeworkStudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param HomeworkRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(HomeworkRequest $request)
     {
         $user = auth()->user();
         $assignment = Assignment::find($request->homework1);

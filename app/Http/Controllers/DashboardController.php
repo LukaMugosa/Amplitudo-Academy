@@ -24,6 +24,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboards.dashboard');
+        $users = User::all()->where('role_id','=','3')->sortByDesc('id')->take(8);
+        return view('dashboards.dashboard')->with('users',$users);
     }
 }

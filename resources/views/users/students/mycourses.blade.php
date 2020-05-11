@@ -25,8 +25,7 @@
                             <td><h2><span class="badge badge-secondary">{{$course->studentsOnThisCourse()}}</span></h2></td>
                             <td>
                                 <a href="{{url("/courses/$course->id")}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                                <a href="#" class="btn btn-info"><i class="fas fa-download"></i></a>
-
+                                <a href="{{url("/download/$course->courses_file_name")}}" class="btn btn-info"><i class="fas fa-download"></i></a>
                             </td>
                         </tr>
                     @endforeach

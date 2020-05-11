@@ -19,7 +19,7 @@
         </div>
         <div class="introduction-video">
             <div class="video-box">
-                <img src="{{asset('images/course-image.jpg')}}" alt="">
+                <img src="{{($course->getFirstMediaUrl()) ? $course->getFirstMediaUrl() : asset('images/course-image.jpg')}}" alt="">
                 <h3 class="price">$18.99</h3>
                 <button class="buy-now" type="submit">Buy Now</button>
                 <div class="course-includes">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Assignment;
 use App\Http\Requests\AssignmentsRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 class AssignmentsController extends Controller
@@ -45,14 +46,18 @@ class AssignmentsController extends Controller
         $assignment->description = $request->input('description');
         $assignment->deadline =  $request->input('deadline');
         $assignment->save();
+        User::all()->where('role_id','=','3')->each(function ($user) use ($assignment) {
+            $user->assignmentsManyToMany()->attach($assignment);
+        });
         return redirect('/assignments')->with('success','Assignment added successfully!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function show($id)
     {

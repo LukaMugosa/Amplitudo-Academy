@@ -15,6 +15,23 @@
             <!-- /.card-header -->
             <div class="card-body p-4">
                 <button type="button" class="btn btn-warning float-right" data-toggle="modal" data-target="#modal-default-3"><i class="fas fa-upload"></i>Turn IN</button>
+                @error('homework1')
+                <div class="alert alert-danger w-50" id="error1" role="alert">{{$message}}</div>
+                @enderror
+                @error('homework')
+                <div class="alert alert-danger w-75" id="error2" role="alert">{{$message}}</div>
+                @enderror
+                @if(session()->has('success'))
+                    <div class="alert alert-success w-50" id="success1">
+                        {{ session()->get('success') }}
+                        <script>
+                            const success = document.getElementById("success1");
+                            setTimeout(() => {
+                                success.classList.add('hide');
+                            },3000);
+                        </script>
+                    </div>
+                @endif
                 <table class="table mt-2" id="example1">
                     <thead>
                     <tr>
@@ -114,9 +131,12 @@
     </script>
     <script>
         const error1 = document.getElementById('error1');
+        const error2 = document.getElementById('error2');
         setTimeout(() => {
             if(error1)
                 error1.classList.add('hide');
+            if(error2)
+                error2.classList.add('hide');
         },3000);
     </script>
     <script>

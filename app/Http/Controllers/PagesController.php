@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     public function index(){
-        $courses = Course::latest();
+        $courses = Course::orderBy('id', 'desc')->take(4)->get();
         return view('pages.index',compact('courses'));
     }
     public function posts(){

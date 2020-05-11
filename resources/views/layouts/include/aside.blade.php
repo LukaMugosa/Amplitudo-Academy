@@ -177,6 +177,12 @@
                     </li>
                @endif
                 <li class="nav-item">
+                    <a href="{{url('/reports/create')}}" class="nav-link">
+                        <i class="fas fa-book nav-icon"></i>
+                        <p>Make a report</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{url('/posts')}}" class="nav-link">
                         <i class="fas fa-blog nav-icon"></i>
                         <p>View Blog</p>

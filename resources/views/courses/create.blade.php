@@ -65,6 +65,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        {{Form::label('header_photo', 'Upload header photo')}}
+                                        {{Form::file('header_photo')}}
+                                        @error('header_photo')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
                                         {{Form::label('video_material', 'Upload video material')}}
                                         {{Form::file('video_material')}}
                                         @error('video_material')

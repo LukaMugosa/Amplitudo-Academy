@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Course extends Model
+class Course extends Model implements HasMedia
 {
+    use HasMediaTrait;
     protected $fillable =['mentor_id','title','about_course','description','price'];
 
     public function users(){

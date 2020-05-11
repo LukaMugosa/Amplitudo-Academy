@@ -39,8 +39,11 @@ class CoursesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @param CoursesRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     public function store(CoursesRequest $request)
     {
@@ -50,6 +53,17 @@ class CoursesController extends Controller
         $course->about_course = $request->input('about_course');
         $course->description = $request->input('description');
         $course->price = $request->input('price');
+        if($request->hasFile('video_material')){
+            $fileNameWithExt = $request->file('video_material')->getClientOriginalName();
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('video_material')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_'.time().'.'.$extension;
+            $path = $request->file('video_material')->storeAs('public/video_material_files',$fileNameToStore);
+        }else{
+            return redirect('/courses/create')->with('error','Please upload your .zip or .rar file!');
+        }
+        $course->courses_file_name = $fileNameToStore;
+        $course->addMedia($request->header_photo)->toMediaCollection();
         $course->save();
         return view('courses.create')->with('success', 'You have successfully added a new course!');
     }

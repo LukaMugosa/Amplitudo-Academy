@@ -53,4 +53,8 @@ Route::resource('/users', 'UsersController');
 Route::get('/my-mentors','MentorsSupervisorsController@index')->name('my-mentors');
 Route::resource('reports','ReportsController');
 Route::get('/reports/edit/{id}','ReportsController@edit');
+Route::post('/my-projects','StudentProjectController@store');
+Route::get('/download/{file_name}','DownloadCoursesController@downloadVideoMaterial');
+Route::get('/download-homework/{file_name}','DownloadHomeworkController@downloadHomework');
+Route::get('/download-project/{file_name}','DownloadProjectsController@downloadProject');
 //Route::get('/edit_blog',function (){return "cao admine!";})->middleware('can:edit_blog')->name('edit_blog');

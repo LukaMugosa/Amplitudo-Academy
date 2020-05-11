@@ -35,48 +35,20 @@
         </div>
     </div>
     <div class="course-heading-container">
-        <h3 class="course-heading">Our best courses</h3>
+        <h3 class="course-heading">Our latest courses</h3>
     </div>
     <div class="courses-container">
-        <div class="card" style="width: 18rem;">
-            <a href="#"><img src="{{ asset('images/course-image.jpg') }}" class="card-img-top" alt="course-image.jpg"></a>
-            <div class="card-body">
-                <h5 class="card-title">Course Title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        @foreach($courses as $course)
+            <div class="card" style="width: 18rem;">
+                <a href="#"><img src="{{($course->getFirstMediaUrl()) ? $course->getFirstMediaUrl() : asset('images/course-image.jpg') }}" class="card-img-top" alt="course-image.jpg"></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{$course->title}}</h5>
+                    <p class="card-text">{{$course->about_course}}</p>
+                </div>
+                <div class="card-body">
+                    <a href="{{url("/courses/$course->id")}}" class="card-link">Preview Course</a>
+                </div>
             </div>
-            <div class="card-body">
-                <a href="#" class="card-link">Preview Course</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <a href="#"><img src="{{ asset('images/course-image.jpg') }}" class="card-img-top" alt="course-image.jpg"></a>
-            <div class="card-body">
-                <h5 class="card-title">Course Title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="card-link">Preview Course</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <a href="#"><img src="{{ asset('images/course-image.jpg') }}" class="card-img-top" alt="course-image.jpg"></a>
-            <div class="card-body">
-                <h5 class="card-title">Course Title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="card-link">Preview Course</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <a href="#"><img src="{{ asset('images/course-image.jpg') }}" class="card-img-top" alt="course-image.jpg"></a>
-            <div class="card-body">
-                <h5 class="card-title">Course Title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="card-link">Preview Course</a>
-            </div>
-        </div>
+        @endforeach
     </div>
 @endsection

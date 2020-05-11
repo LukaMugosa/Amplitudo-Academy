@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectsRequest;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -11,8 +12,8 @@ class ProjectsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:assign_project');
-        $this->middleware('can:evaluate_project');
+        $this->middleware('can:assign_project')->except('show');
+        $this->middleware('can:evaluate_project')->except('show');
     }
 
     /**
@@ -40,6 +41,9 @@ class ProjectsController extends Controller
         $project->project_description = $request->input('project_description');
         $project->deadline =  $request->input('deadline');
         $project->save();
+        User::all()->where('role_id','=','3')->each(function ($user) use ($project) {
+            $user->projects()->attach($project);
+        });
         return redirect('/projects')->with('success','Project added successfully!');
 }
 

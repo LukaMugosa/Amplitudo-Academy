@@ -11,7 +11,7 @@ class Project extends Model
         return $this->belongsTo('App\User');
     }
     public function users(){
-        return $this->belongsToMany('App\User')->withPivot('is_done')->withTimestamps();
+        return $this->belongsToMany('App\User')->withPivot('is_done','file_name')->withTimestamps();
     }
     public static function getAllUndoneProjects(){
         $id = auth()->user()->id;
