@@ -164,6 +164,17 @@
                 error2.classList.add('hide');
         },3000);
     </script>
+    <script>
+        $(document).ready(function(){
+            $("#myModal").on("show.bs.modal", function(e) {
+                var id = $(e.relatedTarget).data('target-id');
+                $.get( "/projects/" + id, function( data ) {
+                    $(".modal-body").html(data.html);
+                });
+
+            });
+        });
+    </script>
 @endsection
 
 

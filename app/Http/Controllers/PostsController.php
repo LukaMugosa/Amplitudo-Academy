@@ -42,6 +42,7 @@ class PostsController extends Controller
         $post->description = $request->input('description');
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
+        $post->addMedia($request->post_header_picture)->toMediaCollection();
         $post->save();
         $id =  auth()->user()->id;
         return redirect("/profile/$id")->with('success', 'You have successfully added a new post!');

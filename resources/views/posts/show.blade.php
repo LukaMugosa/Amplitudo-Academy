@@ -13,7 +13,7 @@
 @section('content')
     <div class="main-container">
         <div class="heading">
-            <img class="image" src="{{asset('images/blog_post_image.jpg')}}" alt="blog_post_image.jpg">
+            <img class="image" src="{{($post->getFirstMediaUrl()) ?  $post->getFirstMediaUrl() : asset('images/blog_post_image.jpg')}}" alt="blog_post_image.jpg">
         </div>
         <div class="content">
             <h2>{{$post->title}}</h2>

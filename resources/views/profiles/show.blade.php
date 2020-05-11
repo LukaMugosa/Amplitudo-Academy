@@ -63,10 +63,10 @@
                                             <b>Enrollments</b> <a class="float-right">{{count($profile->user->courses)}}</a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Badges</b> <a class="float-right">0</a>
+                                            <b>Badges</b> <a class="float-right">{{count($profile->user->badges)}}</a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>XP</b> <a class="float-right">0 points</a>
+                                            <b>XP</b> <a class="float-right"></a>
                                         </li>
                                     @endif
                                     @if($profile->user->isMentor())
@@ -153,6 +153,10 @@
                                                 <div class="form-group">
                                                     {{Form::label('title', 'Title')}}
                                                     {{Form::text('title', '', ['class' => 'form-control ', 'placeholder' => 'Enter Full Title Name','id' => 'exampleInputName'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{Form::label('post_header_picture', 'Upload header image')}} <br>
+                                                    {{Form::file('post_header_picture')}}
                                                 </div>
                                                 <div class="form-group">
                                                     {{Form::label('descriptionInput', 'Description')}}

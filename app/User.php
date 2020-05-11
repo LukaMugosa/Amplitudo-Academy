@@ -85,7 +85,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Assignment');
     }
     public function assignmentsManyToMany(){
-        return $this->belongsToMany('App\Assignment')->withTimestamps();
+        return $this->belongsToMany('App\Assignment')->withPivot('is_done','file_name')->withTimestamps();
     }
     public function reports(){
         return $this->hasMany('App\Report');

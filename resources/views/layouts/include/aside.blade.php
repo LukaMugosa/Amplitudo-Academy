@@ -114,7 +114,7 @@
 
                @if(auth()->user()->isStudent())
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('my-badges')}}" class="nav-link">
                             <i class="fas fa-certificate nav-icon"></i>
                             <p>Badges</p>
                         </a>

@@ -12,7 +12,7 @@ class CoursesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:add_courses');
+//        $this->middleware('can:add_courses');
     }
 
     /**

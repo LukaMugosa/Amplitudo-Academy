@@ -25,7 +25,10 @@ class AssignmentsController extends Controller
     public function index()
     {
         $assignments = Assignment::all()->where('user_id','=',auth()->user()->id);
-        return view('assignments.index')->with('assignments',$assignments);
+
+        return view('assignments.index')->with([
+            'assignments' => $assignments,
+        ]);
     }
 
     /**

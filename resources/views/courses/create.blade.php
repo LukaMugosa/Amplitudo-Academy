@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="form-group">
                                         {{Form::label('video_material', 'Upload video material')}}
-                                        {{Form::file('video_material',['disabled'])}}
+                                        {{Form::file('video_material')}}
                                         @error('video_material')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror

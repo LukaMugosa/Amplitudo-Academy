@@ -46,8 +46,12 @@ body{
     position: absolute;
     left: calc(5vw - 7px);
 }
-img{
-    height: 65%;
+/*img{*/
+/*    height: 65%;*/
+/*}*/
+.post-picture{
+    height: 345px;
+    width: 657px;
 }
 .post{
     display: flex;

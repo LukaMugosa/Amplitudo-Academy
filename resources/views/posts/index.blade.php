@@ -13,7 +13,7 @@
     <div class="posts">
         @foreach($posts as $post)
             <div class="post">
-                    <img src="{{asset('images/blog_post_image.jpg')}}" alt="">
+                    <img class="post-picture" src="{{($post->getFirstMediaUrl()) ? $post->getFirstMediaUrl() : asset('images/blog_post_image.jpg') }}" alt="">
                     <div class="text-content">
                         <h3 class="post-title"><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
                         <p class="post-description">{{$post->description}}</p>
