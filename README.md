@@ -40,7 +40,7 @@ Starting the app: -cd /path/to/workspace/directory
 -`composer install`
 - `npm install` 
 - `copy .env.example .env`(for linux users:'cp .env.example .env')  
--`php artisan key:generate`
+- `php artisan key:generate`
 - open .env file enter required fields for database connection
 - start MySQL
 - `php artisan migrate`
