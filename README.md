@@ -1,82 +1,37 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Amplitudo Academy
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This github repository is my final laravel project for a company named [Amplitudo](https://amplitudo.me/) where i was trained in the past few months for the Laravel framework.
 
-## About Laravel
+## Amplitudo Academy-Web platform
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The Amplitudo Academy web platform should be a platform that Amplitudo could realistically use. Users would primarily be introduced to which courses they can attend at our academy. The application would have several user roles: guest (user who has registered but is not a student of the academy), student of the academy, mentors, supervisors, admin. Each of them would have their own dashboard.
+The user role "Student of the academy" includes:
+- They have their own profile - it fills them with basic information, in addition to the name and surname that it fills in with registration, which are a picture, description, github, linkedin, social networks.
+- Have an overview of all the courses they attend, similar to classes in the google classroom
+- Have a homework page. The mentor can review these homework assignments from his dashboard, evaluate them, comment on them ..
+- They have a page for the projects they receive, when they pass a certain level of course
+The user role "Mentor" includes:
+- He has an overview of the courses he is mentoring, when he enters the course he will be able to set homework
+- Review of mentored users. Only he will have the right of access to see their homework (maybe even a supervisor).
+- It also applies to him as it does to any user - the profile and its content. I would like to add a description of what he does as a programmer, what technologies he knows, etc.
+The user role "Supervisor" includes:
+- Supervises and controls the mentors and students of the academy. There should be more supervisors envious of what types of courses you would follow (for backend, frontend, fullstack).
+- Since the app would also have a blog, its posts would have a special priority, a look that sets it apart from other users.
+- Profile as other users - same things as for mentor and trainees
+- Has a review page in the form of graphs, performance of trainees and mentors
+User role "Admin":
+- overview of users
+- has insight into the payment of courses
+- he is the one who enrolls supervisors and mentors in the database
+- controls the blog, publishes and has the right to "unsubscribe" the user if he did not comply with the terms of use agreed to during registration
+The user role "Guest" includes:
+- This is the status he gets when registering, and when he enrolls for the course he gets the status of an academy student
+- He can comment on blog posts, ask questions on comments related to the course
+- It would have a demo video, which would explain why it should buy the courses offered by the company and how to use the application itself
+- In essence, it would be a way to distinguish the ordinary user from the students of the academy
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The application would also have a blog on which mentors and supervisors would write important things related to the academy, and users could share their experiences, tips. The blog can be seen by everyone, even unregistered users, but only registered users can post. , to like and comment on it. The courses would be something like an e-commerce application. We have a special page for courses. Here everyone can view the courses. The "Guest" user roll can be enrolled for the course. When he makes the payment, all the content related to the course is automatically available to him. When the user enters the course, he has his name, a detailed description - what the student achieves after that course, as well as an intro video where the mentor introduces himself and talks about the course, what the student will learn, etc .. (similar to ¬¬¬¬ intro video on udemy courses). Of course, for each course there is a review in the form of comments, grades, number of participants, notes, etc. For each mentor, it is known which course the mentor is on, maybe we could set one course to have more mentors. Through that, the student of the academy would have a connection with the mentor, ie it is known which mentor (s) is in charge of which students of the academy. It is known for each supervisor which mentors and students he supervises. He has the right to write a report related to the mentor or student of the academy. Also, following this example, the mentor writes a report on the student of the academy. At the end of the completed course, the student of the academy can also write a report on how satisfied he is with the course, the mentor, comments, suggestions, possible complaints, etc.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-Amplitudo akademija
+ 
 
