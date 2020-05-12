@@ -5,26 +5,26 @@ This github repository is my final laravel project for a company named [Amplitud
 ## Amplitudo Academy-Web platform
 
 *The Amplitudo Academy* web platform should be a platform that Amplitudo could realistically use. Users would primarily be introduced to which courses they can attend at our academy. The application would have several user roles: guest (user who has registered but is not a student of the academy), student of the academy, mentors, supervisors, admin. Each of them would have their own dashboard.  
-The user role **"Student of the academy"** includes:  
+### The user role **"Student of the academy"** includes:  
 - They have their own profile - it fills them with basic information, in addition to the name and surname that it fills in with registration, which are a picture, description, github, linkedin, social networks.
 - Have an overview of all the courses they attend, similar to classes in the google classroom
 - Have a homework page. The mentor can review these homework assignments from his dashboard, evaluate them, comment on them ..
 - They have a page for the projects they receive, when they pass a certain level of course  
-The user role **"Mentor"** includes:  
+### The user role **"Mentor"** includes:    
 - He has an overview of the courses he is mentoring, when he enters the course he will be able to set homework
 - Review of mentored users. Only he will have the right of access to see their homework (maybe even a supervisor).
 - It also applies to him as it does to any user - the profile and its content. I would like to add a description of what he does as a programmer, what technologies he knows, etc.  
-The user role **"Supervisor"** includes:  
+### The user role **"Supervisor"** includes:    
 - Supervises and controls the mentors and students of the academy. There should be more supervisors envious of what types of courses you would follow (for backend, frontend, fullstack).
 - Since the app would also have a blog, its posts would have a special priority, a look that sets it apart from other users.
 - Profile as other users - same things as for mentor and trainees
 - Has a review page in the form of graphs, performance of trainees and mentors  
-User role **"Admin"**:  
+### User role **"Admin"**:    
 - overview of users
 - has insight into the payment of courses
 - he is the one who enrolls supervisors and mentors in the database
-- controls the blog, publishes and has the right to "unsubscribe" the user if he did not comply with the terms of use agreed to during registration  
-The user role **"Guest"** includes:  
+- controls the blog, publishes and has the right to "unsubscribe" the user if he did not comply with the terms of use agreed to during registration    
+### The user role **"Guest"** includes:  
 - This is the status he gets when registering, and when he enrolls for the course he gets the status of an academy student
 - He can comment on blog posts, ask questions on comments related to the course
 - It would have a demo video, which would explain why it should buy the courses offered by the company and how to use the application itself
@@ -46,5 +46,5 @@ Starting the app: -cd /path/to/workspace/directory
 - `php artisan migrate`
 - `php artisan storage:link`
 - `php artisan db:seed`
-- `php artisan serve`
+- `php artisan serve`  
 In seeder files you can find user credentials to log in. You can also register to use the app. Every user has it s own dashboard and it should be pretty intuitive to use.
