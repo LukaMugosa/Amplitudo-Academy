@@ -40,6 +40,15 @@
     background-color: #39cccc;
     color: #fff;
 }
+a.buy-now{
+    width: 80%;
+    margin-bottom: 8px;
+    border: 2px solid var(--amplitudo-color);
+    border-radius: 5px;
+    background-color: #39cccc;
+    color: #fff;
+    text-align: center;
+}
 .buy-now:hover{
     background-color: #fff;
     color: #39cccc;
@@ -69,4 +78,68 @@
 .course-description h3{
     padding: 0 16px 8px 16px;
     margin: 15px;
+}
+#profile-pic{
+    width: 70px;
+    height: 70px;
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.7);
+}
+.comments{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: rgba(255, 255, 0, 0.4);
+    border-radius: 10px;
+    position: relative;
+    left:10%;
+    padding: 16px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.8);
+    margin-top: 10px;
+}
+.comment-container{
+    display: flex;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.comment-container .comment-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:  lightgray;
+    border-radius: 5px;
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.7);
+}
+.comment-content p{
+    padding: 10px 8px;
+    border-radius: 5px;
+    margin: 13px 10px;
+    background-color: #fff;
+}
+.add-comment{
+    display: flex;
+    align-items: start;
+    justify-content: space-around;
+    background-color:  lightgray;
+    border-radius: 5px;
+    width: 500px;
+    padding: 15px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.add-comment-input{
+    width: 70%;
+    height: 50px;
+    border-radius: 5px;
+    margin: 0 10px;
+    background-color: #fff;
+}
+.input-field{
+    width: 70%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+}
+.btn{
+    height: 50px;
+    width: 100px;
 }

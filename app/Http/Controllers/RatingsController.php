@@ -2,39 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Rating;
 use Illuminate\Http\Request;
 
 class RatingsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+        $rating = new Rating();
+        $course_id = $request->get('course_id');
+        $rating->user_id = auth()->user()->id;
+        $rating->course_id = $course_id;
+        $rating->rating_value = $request->get('rating_value');
+        $rating->comment = $request->get('comment');
+        $rating->save();
+        return redirect("/courses/$course_id");
     }
 
     /**
@@ -75,10 +65,13 @@ class RatingsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        //
+        $rating = Rating::find($id);
+        $course_id = $rating->course_id;
+        $rating->delete();
+        return redirect("/courses/$course_id");
     }
 }

@@ -263,7 +263,7 @@
                                                         <span class="badge badge-pill badge-light w-25 mb-2 p-2 text-md-left"><i class="far fa-clock"></i>{{$homework->created_at}}</span>
                                                         <h3 class="timeline-header">{{$homework->title}}</h3>
                                                         <a href="{{url("/download-homework/".$homework->users[0]->pivot->file_name)}}" class="btn btn-dark" style="width: 300px">Download Students Homework</a>
-                                                        @if(auth()->user()->isMentor()))
+                                                        @if(auth()->user()->isMentor())
                                                             <a href="#" class="btn btn-outline-warning mt-3" style="width: 300px">Evaluate Homework</a>
                                                         @endif
                                                     </div>
@@ -280,7 +280,7 @@
                                                     <span class="badge badge-pill badge-light w-25 mb-2 p-2 text-md-left"><i class="far fa-clock"></i>{{$project->created_at}}</span>
                                                     <h3 class="timeline-header">{{$project->title}}</h3>
                                                     <a href="{{url("/download-project/".$project->users[0]->pivot->file_name)}}" class="btn btn-dark" style="width: 300px">Download Students Project</a>
-                                                    @if(auth()->user()->isMentor()))
+                                                    @if(auth()->user()->isMentor())
                                                         <a href="#" class="btn btn-outline-warning mt-3" style="width: 300px">Evaluate Homework</a>
                                                     @endif
                                                 </div>

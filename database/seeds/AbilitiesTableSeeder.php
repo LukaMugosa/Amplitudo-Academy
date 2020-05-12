@@ -83,5 +83,8 @@ class AbilitiesTableSeeder extends Seeder
         \App\Ability::create([
             'name' => 'download_content'
         ]);
+        \App\Ability::create([
+            'name' => 'view_payments'
+        ]);
     }
 }

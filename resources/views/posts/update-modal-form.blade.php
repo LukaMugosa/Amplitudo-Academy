@@ -16,6 +16,10 @@
             </div>
         </div>
     </div>
+    <div class="form-group">
+        {{Form::label('post_header_picture', 'Upload header image',['class' => 'text-info'])}} <br>
+        {{Form::file('post_header_picture')}}
+    </div>
 </div>
 <div class="modal-footer justify-content-between">
     <div class="modal-footer justify-content-between">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Http\Requests\CoursesRequest;
+use App\Rating;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class CoursesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CoursesRequest $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
@@ -65,30 +66,37 @@ class CoursesController extends Controller
         $course->courses_file_name = $fileNameToStore;
         $course->addMedia($request->header_photo)->toMediaCollection();
         $course->save();
-        return view('courses.create')->with('success', 'You have successfully added a new course!');
+        return redirect('/courses/create')->with('success', 'You have successfully added a new course!');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
         $course = Course::findOrFail($id);
-        return view('courses.show')->with('course',$course);
+        $reviews = Rating::all()->where('course_id','=',$id);
+        return view('courses.show')->with([
+            'course' => $course,
+            'reviews' => $reviews,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        $returnHTML = view('courses.update-modal-form',['course'=> $course])->render();
+        return response()->json( ['html' => $returnHTML]);
     }
 
     /**

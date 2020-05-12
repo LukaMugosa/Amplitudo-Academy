@@ -18,6 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('purpose');
             $table->unsignedDouble('amount');
+            $table->string('credit_card_number');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

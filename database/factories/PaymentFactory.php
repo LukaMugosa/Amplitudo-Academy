@@ -10,5 +10,6 @@ $factory->define(\App\Payment::class, function (Faker $faker) {
         'user_id' => $faker->numberBetween(2,4),
         'purpose' => $faker->word,
         'amount' => $faker->randomFloat(1,20,100),
+        'credit_card_number' => $faker->creditCardNumber,
     ];
 });

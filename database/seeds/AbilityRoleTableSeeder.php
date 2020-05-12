@@ -20,6 +20,7 @@ class AbilityRoleTableSeeder extends Seeder
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'ban_users'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'view_ratings'));
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'view_reports'));
+            $role->allowTo(App\Ability::all()->where('name' ,'=', 'view_payments'));
         });
         App\Role::all()->where('id','=', 2)->each(function ($role){
             $role->allowTo(App\Ability::all()->where('name' ,'=', 'view_students'));

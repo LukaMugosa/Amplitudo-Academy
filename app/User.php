@@ -179,4 +179,13 @@ class User extends Authenticatable
     public function badges(){
         return $this->belongsToMany('App\Badge')->withTimestamps();
     }
+    public function hasThisCourse($id){
+        $courses = auth()->user()->courses;
+        foreach ($courses as $course){
+            if($course->id === $id){
+                return true;
+            }
+        }
+        return false;
+    }
 }

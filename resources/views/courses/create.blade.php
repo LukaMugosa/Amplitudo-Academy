@@ -20,13 +20,13 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            @if(isset($success))
-                                <div class="alert alert-info" id="error1">{{$success}} </div>
+                            @if(session()->has('success'))
+                                <div class="alert alert-success" id="success">{{session()->get('success')}} </div>
                                 <script>
-                                    const error1 = document.getElementById('error1');
+                                    const success = document.getElementById('success');
                                     setTimeout(() => {
-                                        if(error1)
-                                            error1.classList.add('hide');
+                                        if(success)
+                                            success.classList.add('hide');
                                     },3500);
                                 </script>
                             @endif
